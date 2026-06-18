@@ -96,10 +96,10 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             tblInfo.Controls.Add(lblTitle, 0, 0);
             tblInfo.SetColumnSpan(lblTitle, 4);
 
-            lblValNgayDat = new Label { Font = ThemeHelper.FontBody, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
-            lblValTrangThai = new Label { Font = ThemeHelper.FontBodyBold, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
-            lblValKhachHang = new Label { Font = ThemeHelper.FontBody, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
-            lblValNgayDuyet = new Label { Font = ThemeHelper.FontBodyBold, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
+            lblValNgayDat = new Label { Text = "18/06/2026", Font = ThemeHelper.FontBody, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
+            lblValTrangThai = new Label { Text = "Cho duyet", Font = ThemeHelper.FontBodyBold, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
+            lblValKhachHang = new Label { Text = "Nguyen Van A", Font = ThemeHelper.FontBody, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
+            lblValNgayDuyet = new Label { Text = "Chua duyet", Font = ThemeHelper.FontBodyBold, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
 
             AddInfoRow(tblInfo, 1, "Ngày đặt:", lblValNgayDat, "Trạng thái:", lblValTrangThai);
             AddInfoRow(tblInfo, 2, "Khách hàng:", lblValKhachHang, "Ngày duyệt:", lblValNgayDuyet);

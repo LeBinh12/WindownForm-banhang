@@ -78,7 +78,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             tblFields.Controls.Add(CreateLabel("Sản phẩm:"), 0, 0);
             lblProduct = new Label
             {
-                Text = "Sản phẩm",
+                Text = "Sữa tươi Vinamilk 1L",
                 Font = ThemeHelper.FontBodyBold,
                 ForeColor = ThemeHelper.Text,
                 Dock = DockStyle.Fill,
@@ -90,7 +90,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             tblFields.Controls.Add(CreateLabel("Hóa đơn đã mua:"), 0, 1);
             lblPurchased = new Label
             {
-                Text = "0 sản phẩm",
+                Text = "5 sản phẩm",
                 Font = ThemeHelper.FontBody,
                 ForeColor = ThemeHelper.TextSecondary,
                 Dock = DockStyle.Fill,
@@ -104,7 +104,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             {
                 Dock = DockStyle.Fill,
                 Minimum = 1,
-                Maximum = 1,
+                Maximum = 5,
                 Value = 1,
                 Font = ThemeHelper.FontBody
             };
@@ -132,11 +132,11 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
                 Size = new Size(100, 36),
                 BorderRadius = 18,
                 FillColor = ThemeHelper.BorderLight,
-                HoverState = { FillColor = ThemeHelper.Border },
                 Font = ThemeHelper.FontBodyBold,
                 ForeColor = ThemeHelper.TextSecondary,
                 Cursor = Cursors.Hand
             };
+            btnCancel.HoverState.FillColor = ThemeHelper.Border;
             pnlMain.Controls.Add(btnCancel);
 
             btnSave = new Guna2Button
@@ -146,11 +146,11 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
                 Size = new Size(110, 36),
                 BorderRadius = 18,
                 FillColor = ThemeHelper.Danger,
-                HoverState = { FillColor = Color.FromArgb(185, 28, 28) },
                 Font = ThemeHelper.FontBodyBold,
                 ForeColor = Color.White,
                 Cursor = Cursors.Hand
             };
+            btnSave.HoverState.FillColor = Color.FromArgb(185, 28, 28);
             btnSave.Click += BtnSave_Click;
             pnlMain.Controls.Add(btnSave);
         }

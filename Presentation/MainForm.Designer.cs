@@ -142,16 +142,85 @@ namespace QuanLyCuaHangTapHoa.Presentation
             flowSidebar.Controls.Add(pnlProfile);
 
             // Menu Buttons
-            btnProducts = CreateMenuButton("📦  Sản phẩm & Kho");
+            btnProducts = new Guna2Button
+            {
+                Text = "📦  Sản phẩm & Kho",
+                Size = new Size(230, 48),
+                FillColor = ThemeHelper.SidebarBg,
+                ForeColor = ThemeHelper.TextMuted,
+                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                TextAlign = HorizontalAlignment.Left,
+                TextOffset = new Point(10, 0),
+                Cursor = Cursors.Hand,
+                BorderRadius = 0,
+                Margin = new Padding(0)
+            };
+            btnProducts.HoverState.FillColor = ThemeHelper.SidebarActiveBg;
+            btnProducts.HoverState.ForeColor = Color.White;
 
-            btnOrders = CreateMenuButton("📝  Đơn đặt giữ hàng");
+            btnOrders = new Guna2Button
+            {
+                Text = "📝  Đơn đặt giữ hàng",
+                Size = new Size(230, 48),
+                FillColor = ThemeHelper.SidebarBg,
+                ForeColor = ThemeHelper.TextMuted,
+                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                TextAlign = HorizontalAlignment.Left,
+                TextOffset = new Point(10, 0),
+                Cursor = Cursors.Hand,
+                BorderRadius = 0,
+                Margin = new Padding(0)
+            };
+            btnOrders.HoverState.FillColor = ThemeHelper.SidebarActiveBg;
+            btnOrders.HoverState.ForeColor = Color.White;
 
-            btnPOS = CreateMenuButton("💳  Thanh toán POS");
+            btnPOS = new Guna2Button
+            {
+                Text = "💳  Thanh toán POS",
+                Size = new Size(230, 48),
+                FillColor = ThemeHelper.SidebarBg,
+                ForeColor = ThemeHelper.TextMuted,
+                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                TextAlign = HorizontalAlignment.Left,
+                TextOffset = new Point(10, 0),
+                Cursor = Cursors.Hand,
+                BorderRadius = 0,
+                Margin = new Padding(0)
+            };
+            btnPOS.HoverState.FillColor = ThemeHelper.SidebarActiveBg;
+            btnPOS.HoverState.ForeColor = Color.White;
 
-            btnAccounts = CreateMenuButton("👤  Quản lý tài khoản");
+            btnAccounts = new Guna2Button
+            {
+                Text = "👤  Quản lý tài khoản",
+                Size = new Size(230, 48),
+                FillColor = ThemeHelper.SidebarBg,
+                ForeColor = ThemeHelper.TextMuted,
+                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                TextAlign = HorizontalAlignment.Left,
+                TextOffset = new Point(10, 0),
+                Cursor = Cursors.Hand,
+                BorderRadius = 0,
+                Margin = new Padding(0)
+            };
+            btnAccounts.HoverState.FillColor = ThemeHelper.SidebarActiveBg;
+            btnAccounts.HoverState.ForeColor = Color.White;
 
-            btnLogout = CreateMenuButton("🚪  Đăng xuất");
-            btnLogout.ForeColor = ThemeHelper.Danger;
+            btnLogout = new Guna2Button
+            {
+                Text = "🚪  Đăng xuất",
+                Size = new Size(230, 48),
+                FillColor = ThemeHelper.SidebarBg,
+                ForeColor = ThemeHelper.Danger,
+                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                TextAlign = HorizontalAlignment.Left,
+                TextOffset = new Point(10, 0),
+                Cursor = Cursors.Hand,
+                BorderRadius = 0,
+                Margin = new Padding(0)
+            };
+            btnLogout.HoverState.FillColor = ThemeHelper.SidebarActiveBg;
+            btnLogout.HoverState.ForeColor = Color.White;
             btnLogout.Click += BtnLogout_Click;
 
             flowSidebar.Controls.AddRange(new Control[] { btnProducts, btnOrders, btnPOS, btnAccounts, btnLogout });

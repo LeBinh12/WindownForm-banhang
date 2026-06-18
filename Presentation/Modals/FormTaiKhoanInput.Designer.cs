@@ -84,13 +84,13 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
 
             // Row 0: MaNguoiDung
             tblFields.Controls.Add(CreateLabel("Mã người dùng *"), 0, 0);
-            txtMaNguoiDung = CreateTextBox("", false);
+            txtMaNguoiDung = CreateTextBox("admin", false);
             txtMaNguoiDung.PlaceholderText = "Ví dụ: admin, nv01, kh01...";
             tblFields.Controls.Add(txtMaNguoiDung, 1, 0);
 
             // Row 1: TenDangNhap
             tblFields.Controls.Add(CreateLabel("Tên đăng nhập *"), 0, 1);
-            txtTenDangNhap = CreateTextBox("", false);
+            txtTenDangNhap = CreateTextBox("admin_test", false);
             txtTenDangNhap.PlaceholderText = "Tên đăng nhập duy nhất...";
             tblFields.Controls.Add(txtTenDangNhap, 1, 1);
 
@@ -106,7 +106,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             // Row 3: MatKhau
             lblPasswordLabel = CreateLabel("Mật khẩu *");
             tblFields.Controls.Add(lblPasswordLabel, 0, 3);
-            txtMatKhau = CreateTextBox("");
+            txtMatKhau = CreateTextBox("********");
             txtMatKhau.PasswordChar = '●';
             txtMatKhau.UseSystemPasswordChar = true;
             txtMatKhau.PlaceholderText = "Nhập mật khẩu...";
@@ -134,37 +134,37 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
 
             // Row 4: HoTen
             tblFields.Controls.Add(CreateLabel("Họ và tên *"), 0, 4);
-            txtHoTen = CreateTextBox("");
+            txtHoTen = CreateTextBox("Lê Bình");
             txtHoTen.PlaceholderText = "Nhập đầy đủ họ tên...";
             tblFields.Controls.Add(txtHoTen, 1, 4);
 
             // Row 5: Email
             tblFields.Controls.Add(CreateLabel("Email *"), 0, 5);
-            txtEmail = CreateTextBox("");
+            txtEmail = CreateTextBox("lebinh@gmail.com");
             txtEmail.PlaceholderText = "Ví dụ: user@gmail.com";
             tblFields.Controls.Add(txtEmail, 1, 5);
 
             // Row 6: SoDienThoai
             tblFields.Controls.Add(CreateLabel("Số điện thoại *"), 0, 6);
-            txtSoDienThoai = CreateTextBox("");
+            txtSoDienThoai = CreateTextBox("0912345678");
             txtSoDienThoai.PlaceholderText = "Ví dụ: 0912345678";
             tblFields.Controls.Add(txtSoDienThoai, 1, 6);
 
             // Row 7: DiaChi
             tblFields.Controls.Add(CreateLabel("Địa chỉ"), 0, 7);
-            txtDiaChi = CreateTextBox("");
+            txtDiaChi = CreateTextBox("123 Đường 3/2, Cần Thơ");
             txtDiaChi.PlaceholderText = "Số nhà, tên đường...";
             tblFields.Controls.Add(txtDiaChi, 1, 7);
 
             // Row 8: ChucVu
             tblFields.Controls.Add(CreateLabel("Chức vụ (Admin/Staff)"), 0, 8);
-            txtChucVu = CreateTextBox("");
+            txtChucVu = CreateTextBox("Quản trị viên");
             txtChucVu.PlaceholderText = "Ví dụ: Thu ngân, Quản kho...";
             tblFields.Controls.Add(txtChucVu, 1, 8);
 
             // Row 9: MaKhachHang
             tblFields.Controls.Add(CreateLabel("Mã khách hàng (KH)"), 0, 9);
-            txtMaKhachHang = CreateTextBox("");
+            txtMaKhachHang = CreateTextBox("KH1023");
             txtMaKhachHang.PlaceholderText = "Ví dụ: KH1023";
             tblFields.Controls.Add(txtMaKhachHang, 1, 9);
 

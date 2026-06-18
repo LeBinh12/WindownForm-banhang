@@ -80,35 +80,35 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
 
             // Row 0: MaSP
             var lblMaSP = CreateLabel("Mã sản phẩm *");
-            txtMaSP = CreateTextBox("", false); // Read-only if edit
+            txtMaSP = CreateTextBox("SP001", false); // Read-only if edit
             txtMaSP.PlaceholderText = "Mã định danh duy nhất...";
             tblFields.Controls.Add(lblMaSP, 0, 0);
             tblFields.Controls.Add(txtMaSP, 1, 0);
 
             // Row 1: TenSP
             var lblTenSP = CreateLabel("Tên sản phẩm *");
-            txtTenSP = CreateTextBox("");
+            txtTenSP = CreateTextBox("Sữa tươi Vinamilk 1L");
             txtTenSP.PlaceholderText = "Nhập tên sản phẩm...";
             tblFields.Controls.Add(lblTenSP, 0, 1);
             tblFields.Controls.Add(txtTenSP, 1, 1);
 
             // Row 2: DanhMuc
             var lblDanhMuc = CreateLabel("Danh mục *");
-            txtDanhMuc = CreateTextBox("");
+            txtDanhMuc = CreateTextBox("Đồ uống");
             txtDanhMuc.PlaceholderText = "Ví dụ: Gia vị, Đồ uống...";
             tblFields.Controls.Add(lblDanhMuc, 0, 2);
             tblFields.Controls.Add(txtDanhMuc, 1, 2);
 
             // Row 3: DonGia
             var lblDonGia = CreateLabel("Đơn giá (VND) *");
-            txtDonGia = CreateTextBox("");
+            txtDonGia = CreateTextBox("30000");
             txtDonGia.PlaceholderText = "Ví dụ: 15000";
             tblFields.Controls.Add(lblDonGia, 0, 3);
             tblFields.Controls.Add(txtDonGia, 1, 3);
 
             // Row 4: SoLuongTon
             var lblSoLuongTon = CreateLabel("Số lượng tồn *");
-            txtSoLuongTon = CreateTextBox("");
+            txtSoLuongTon = CreateTextBox("50");
             txtSoLuongTon.PlaceholderText = "Ví dụ: 100";
             tblFields.Controls.Add(lblSoLuongTon, 0, 4);
             tblFields.Controls.Add(txtSoLuongTon, 1, 4);
