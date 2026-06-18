@@ -32,143 +32,184 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
         /// </summary>
         private void InitializeComponent()
         {
-            this.Size = new Size(460, 320);
-            this.BackColor = Color.White;
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.StartPosition = FormStartPosition.CenterParent;
+            this.pnlMain = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.tblFields = new System.Windows.Forms.TableLayoutPanel();
+            this.lblProductHeader = new System.Windows.Forms.Label();
+            this.lblProduct = new System.Windows.Forms.Label();
+            this.lblPurchasedHeader = new System.Windows.Forms.Label();
+            this.lblPurchased = new System.Windows.Forms.Label();
+            this.lblReturnQtyHeader = new System.Windows.Forms.Label();
+            this.numQty = new System.Windows.Forms.NumericUpDown();
+            this.lblReasonHeader = new System.Windows.Forms.Label();
+            this.txtReason = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btnCancel = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSave = new Guna.UI2.WinForms.Guna2Button();
 
-            Panel pnlMain = new Panel
-            {
-                Dock = DockStyle.Fill,
-                Padding = new Padding(20),
-                BorderStyle = BorderStyle.FixedSingle
-            };
-            this.Controls.Add(pnlMain);
+            // 
+            // pnlMain
+            // 
+            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMain.Padding = new System.Windows.Forms.Padding(20);
+            this.pnlMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.pnlMain);
 
-            Label lblTitle = new Label
-            {
-                Text = "YÊU CẦU TRẢ HÀNG LỖI",
-                Font = ThemeHelper.FontSubheading,
-                ForeColor = ThemeHelper.Primary,
-                AutoSize = true,
-                Location = new Point(20, 15)
-            };
-            pnlMain.Controls.Add(lblTitle);
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.Text = "YÊU CẦU TRẢ HÀNG LỖI";
+            this.lblTitle.Font = ThemeHelper.FontSubheading;
+            this.lblTitle.ForeColor = ThemeHelper.Primary;
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Location = new System.Drawing.Point(20, 15);
+            this.pnlMain.Controls.Add(this.lblTitle);
 
-            // TableLayout
-            TableLayoutPanel tblFields = new TableLayoutPanel
-            {
-                Location = new Point(20, 50),
-                Size = new Size(420, 200),
-                ColumnCount = 2,
-                RowCount = 4,
-                BackColor = Color.Transparent
-            };
-            tblFields.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 130));
-            tblFields.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+            // 
+            // tblFields
+            // 
+            this.tblFields.Location = new System.Drawing.Point(20, 50);
+            this.tblFields.Size = new System.Drawing.Size(420, 200);
+            this.tblFields.ColumnCount = 2;
+            this.tblFields.RowCount = 4;
+            this.tblFields.BackColor = System.Drawing.Color.Transparent;
+            this.tblFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130));
+            this.tblFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100));
+            this.tblFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45));
+            this.tblFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45));
+            this.tblFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45));
+            this.tblFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100));
+            this.pnlMain.Controls.Add(this.tblFields);
 
-            tblFields.RowStyles.Add(new RowStyle(SizeType.Absolute, 45)); // Product Name
-            tblFields.RowStyles.Add(new RowStyle(SizeType.Absolute, 45)); // Purchased Qty
-            tblFields.RowStyles.Add(new RowStyle(SizeType.Absolute, 45)); // Return Qty
-            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 100)); // Reason
+            // 
+            // lblProductHeader
+            // 
+            this.lblProductHeader.Text = "Sản phẩm:";
+            this.lblProductHeader.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblProductHeader.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblProductHeader.Font = ThemeHelper.FontCaptionBold;
+            this.lblProductHeader.ForeColor = ThemeHelper.TextSecondary;
+            this.lblProductHeader.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.tblFields.Controls.Add(this.lblProductHeader, 0, 0);
 
-            pnlMain.Controls.Add(tblFields);
+            // 
+            // lblProduct
+            // 
+            this.lblProduct.Text = "Sữa tươi Vinamilk 1L";
+            this.lblProduct.Font = ThemeHelper.FontBodyBold;
+            this.lblProduct.ForeColor = ThemeHelper.Text;
+            this.lblProduct.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblProduct.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tblFields.Controls.Add(this.lblProduct, 1, 0);
 
-            // Row 0: Product Info
-            tblFields.Controls.Add(CreateLabel("Sản phẩm:"), 0, 0);
-            lblProduct = new Label
-            {
-                Text = "Sữa tươi Vinamilk 1L",
-                Font = ThemeHelper.FontBodyBold,
-                ForeColor = ThemeHelper.Text,
-                Dock = DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleLeft
-            };
-            tblFields.Controls.Add(lblProduct, 1, 0);
+            // 
+            // lblPurchasedHeader
+            // 
+            this.lblPurchasedHeader.Text = "Hóa đơn đã mua:";
+            this.lblPurchasedHeader.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPurchasedHeader.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblPurchasedHeader.Font = ThemeHelper.FontCaptionBold;
+            this.lblPurchasedHeader.ForeColor = ThemeHelper.TextSecondary;
+            this.lblPurchasedHeader.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.tblFields.Controls.Add(this.lblPurchasedHeader, 0, 1);
 
-            // Row 1: Max Qty
-            tblFields.Controls.Add(CreateLabel("Hóa đơn đã mua:"), 0, 1);
-            lblPurchased = new Label
-            {
-                Text = "5 sản phẩm",
-                Font = ThemeHelper.FontBody,
-                ForeColor = ThemeHelper.TextSecondary,
-                Dock = DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleLeft
-            };
-            tblFields.Controls.Add(lblPurchased, 1, 1);
+            // 
+            // lblPurchased
+            // 
+            this.lblPurchased.Text = "5 sản phẩm";
+            this.lblPurchased.Font = ThemeHelper.FontBody;
+            this.lblPurchased.ForeColor = ThemeHelper.TextSecondary;
+            this.lblPurchased.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPurchased.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tblFields.Controls.Add(this.lblPurchased, 1, 1);
 
-            // Row 2: Return Qty
-            tblFields.Controls.Add(CreateLabel("Số lượng trả lỗi *"), 0, 2);
-            numQty = new NumericUpDown
-            {
-                Dock = DockStyle.Fill,
-                Minimum = 1,
-                Maximum = 5,
-                Value = 1,
-                Font = ThemeHelper.FontBody
-            };
-            tblFields.Controls.Add(numQty, 1, 2);
+            // 
+            // lblReturnQtyHeader
+            // 
+            this.lblReturnQtyHeader.Text = "Số lượng trả lỗi *";
+            this.lblReturnQtyHeader.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblReturnQtyHeader.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblReturnQtyHeader.Font = ThemeHelper.FontCaptionBold;
+            this.lblReturnQtyHeader.ForeColor = ThemeHelper.TextSecondary;
+            this.lblReturnQtyHeader.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.tblFields.Controls.Add(this.lblReturnQtyHeader, 0, 2);
 
-            // Row 3: Reason
-            tblFields.Controls.Add(CreateLabel("Lý do trả lỗi *"), 0, 3);
-            txtReason = new Guna2TextBox
-            {
-                Dock = DockStyle.Fill,
-                Height = 36,
-                BorderRadius = 8,
-                BorderColor = ThemeHelper.Border,
-                Font = ThemeHelper.FontBody,
-                ForeColor = ThemeHelper.Text,
-                PlaceholderText = "Nhập lý do lỗi chi tiết..."
-            };
-            tblFields.Controls.Add(txtReason, 1, 3);
+            // 
+            // numQty
+            // 
+            this.numQty.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numQty.Minimum = 1;
+            this.numQty.Maximum = 5;
+            this.numQty.Value = 1;
+            this.numQty.Font = ThemeHelper.FontBody;
+            this.tblFields.Controls.Add(this.numQty, 1, 2);
 
-            // Buttons
-            btnCancel = new Guna2Button
-            {
-                Text = "Hủy bỏ",
-                Location = new Point(220, 265),
-                Size = new Size(100, 36),
-                BorderRadius = 18,
-                FillColor = ThemeHelper.BorderLight,
-                Font = ThemeHelper.FontBodyBold,
-                ForeColor = ThemeHelper.TextSecondary,
-                Cursor = Cursors.Hand
-            };
-            btnCancel.HoverState.FillColor = ThemeHelper.Border;
-            pnlMain.Controls.Add(btnCancel);
+            // 
+            // lblReasonHeader
+            // 
+            this.lblReasonHeader.Text = "Lý do trả lỗi *";
+            this.lblReasonHeader.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblReasonHeader.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblReasonHeader.Font = ThemeHelper.FontCaptionBold;
+            this.lblReasonHeader.ForeColor = ThemeHelper.TextSecondary;
+            this.lblReasonHeader.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.tblFields.Controls.Add(this.lblReasonHeader, 0, 3);
 
-            btnSave = new Guna2Button
-            {
-                Text = "Xác nhận",
-                Location = new Point(330, 265),
-                Size = new Size(110, 36),
-                BorderRadius = 18,
-                FillColor = ThemeHelper.Danger,
-                Font = ThemeHelper.FontBodyBold,
-                ForeColor = Color.White,
-                Cursor = Cursors.Hand
-            };
-            btnSave.HoverState.FillColor = Color.FromArgb(185, 28, 28);
-            btnSave.Click += BtnSave_Click;
-            pnlMain.Controls.Add(btnSave);
-        }
+            // 
+            // txtReason
+            // 
+            this.txtReason.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtReason.Height = 36;
+            this.txtReason.BorderRadius = 8;
+            this.txtReason.BorderColor = ThemeHelper.Border;
+            this.txtReason.Font = ThemeHelper.FontBody;
+            this.txtReason.ForeColor = ThemeHelper.Text;
+            this.txtReason.PlaceholderText = "Nhập lý do lỗi chi tiết...";
+            this.tblFields.Controls.Add(this.txtReason, 1, 3);
 
-        private Label CreateLabel(string text)
-        {
-            return new Label
-            {
-                Text = text,
-                Dock = DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleRight,
-                Font = ThemeHelper.FontCaptionBold,
-                ForeColor = ThemeHelper.TextSecondary,
-                Padding = new Padding(0, 0, 10, 0)
-            };
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Text = "Hủy bỏ";
+            this.btnCancel.Location = new System.Drawing.Point(220, 265);
+            this.btnCancel.Size = new System.Drawing.Size(100, 36);
+            this.btnCancel.BorderRadius = 18;
+            this.btnCancel.FillColor = ThemeHelper.BorderLight;
+            this.btnCancel.Font = ThemeHelper.FontBodyBold;
+            this.btnCancel.ForeColor = ThemeHelper.TextSecondary;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.HoverState.FillColor = ThemeHelper.Border;
+            this.pnlMain.Controls.Add(this.btnCancel);
+
+            // 
+            // btnSave
+            // 
+            this.btnSave.Text = "Xác nhận";
+            this.btnSave.Location = new System.Drawing.Point(330, 265);
+            this.btnSave.Size = new System.Drawing.Size(110, 36);
+            this.btnSave.BorderRadius = 18;
+            this.btnSave.FillColor = ThemeHelper.Danger;
+            this.btnSave.Font = ThemeHelper.FontBodyBold;
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.HoverState.FillColor = System.Drawing.Color.FromArgb(185, 28, 28);
+            this.pnlMain.Controls.Add(this.btnSave);
+
+            // FORM properties
+            this.Size = new System.Drawing.Size(460, 320);
+            this.BackColor = System.Drawing.Color.White;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel pnlMain;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.TableLayoutPanel tblFields;
+        private System.Windows.Forms.Label lblProductHeader;
+        private System.Windows.Forms.Label lblPurchasedHeader;
+        private System.Windows.Forms.Label lblReturnQtyHeader;
+        private System.Windows.Forms.Label lblReasonHeader;
 
         private Label lblProduct;
         private Label lblPurchased;

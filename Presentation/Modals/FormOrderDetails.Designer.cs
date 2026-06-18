@@ -34,204 +34,289 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
         /// </summary>
         private void InitializeComponent()
         {
-            this.MinimumSize = new Size(700, 540);
-            this.Size        = new Size(760, 580);
-            this.BackColor   = ThemeHelper.BackgroundApp;
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.StartPosition   = FormStartPosition.CenterParent;
+            this.root = new System.Windows.Forms.TableLayoutPanel();
+            this.cardInfo = new Guna.UI2.WinForms.Guna2Panel();
+            this.tblInfo = new System.Windows.Forms.TableLayoutPanel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.lblNgayDat = new System.Windows.Forms.Label();
+            this.lblValNgayDat = new System.Windows.Forms.Label();
+            this.lblTrangThai = new System.Windows.Forms.Label();
+            this.lblValTrangThai = new System.Windows.Forms.Label();
+            this.lblKhachHang = new System.Windows.Forms.Label();
+            this.lblValKhachHang = new System.Windows.Forms.Label();
+            this.lblNgayDuyet = new System.Windows.Forms.Label();
+            this.lblValNgayDuyet = new System.Windows.Forms.Label();
+            this.lblSection = new System.Windows.Forms.Label();
+            this.cardGrid = new Guna.UI2.WinForms.Guna2Panel();
+            this.dgvDetails = new System.Windows.Forms.DataGridView();
+            this.pnlFooter = new System.Windows.Forms.Panel();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.btnClose = new Guna.UI2.WinForms.Guna2Button();
 
-            var root = new TableLayoutPanel
-            {
-                Dock        = DockStyle.Fill,
-                ColumnCount = 1,
-                RowCount    = 4,
-                Padding     = new Padding(20),
-                BackColor   = ThemeHelper.BackgroundApp
-            };
-            root.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            root.RowStyles.Add(new RowStyle(SizeType.AutoSize));          // 0 info card
-            root.RowStyles.Add(new RowStyle(SizeType.AutoSize));          // 1 section label
-            root.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));     // 2 grid
-            root.RowStyles.Add(new RowStyle(SizeType.AutoSize));          // 3 footer
-            this.Controls.Add(root);
+            // 
+            // root
+            // 
+            this.root.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.root.ColumnCount = 1;
+            this.root.RowCount = 4;
+            this.root.Padding = new System.Windows.Forms.Padding(20);
+            this.root.BackColor = ThemeHelper.BackgroundApp;
+            this.root.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
+            this.root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
+            this.root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.root.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize));
+            this.Controls.Add(this.root);
 
-            // ── ROW 0: Info Card ──────────────────────────────────────
-            var cardInfo = new Guna2Panel
-            {
-                Dock            = DockStyle.Fill,
-                BorderRadius    = 12,
-                FillColor       = Color.White,
-                Padding         = new Padding(16),
-                Margin          = new Padding(0, 0, 0, 12),
-                AutoSize        = true,
-                AutoSizeMode    = AutoSizeMode.GrowAndShrink
-            };
-            cardInfo.ShadowDecoration.Enabled = true;
-            root.Controls.Add(cardInfo, 0, 0);
+            // 
+            // cardInfo
+            // 
+            this.cardInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cardInfo.BorderRadius = 12;
+            this.cardInfo.FillColor = System.Drawing.Color.White;
+            this.cardInfo.Padding = new System.Windows.Forms.Padding(16);
+            this.cardInfo.Margin = new System.Windows.Forms.Padding(0, 0, 0, 12);
+            this.cardInfo.AutoSize = true;
+            this.cardInfo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.cardInfo.ShadowDecoration.Enabled = true;
+            this.root.Controls.Add(this.cardInfo, 0, 0);
 
-            // 2-column label grid inside card: [label | value] × 5 rows
-            var tblInfo = new TableLayoutPanel
-            {
-                ColumnCount = 4,   // Label | Value | Label | Value
-                RowCount    = 3,
-                AutoSize    = true,
-                AutoSizeMode = AutoSizeMode.GrowAndShrink,
-                Dock        = DockStyle.Top,
-                BackColor   = Color.Transparent
-            };
-            tblInfo.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110F));
-            tblInfo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,  40F));
-            tblInfo.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 110F));
-            tblInfo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,  60F));
-            cardInfo.Controls.Add(tblInfo);
+            // 
+            // tblInfo
+            // 
+            this.tblInfo.ColumnCount = 4;
+            this.tblInfo.RowCount = 3;
+            this.tblInfo.AutoSize = true;
+            this.tblInfo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tblInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tblInfo.BackColor = System.Drawing.Color.Transparent;
+            this.tblInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tblInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tblInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tblInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.cardInfo.Controls.Add(this.tblInfo);
 
-            lblTitle = new Label
-            {
-                Text      = "CHI TIẾT ĐƠN HÀNG",
-                Font      = ThemeHelper.FontSubheading,
-                ForeColor = ThemeHelper.Primary,
-                AutoSize  = true,
-                Margin    = new Padding(0, 0, 0, 10)
-            };
-            tblInfo.Controls.Add(lblTitle, 0, 0);
-            tblInfo.SetColumnSpan(lblTitle, 4);
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.Text = "CHI TIẾT ĐƠN HÀNG";
+            this.lblTitle.Font = ThemeHelper.FontSubheading;
+            this.lblTitle.ForeColor = ThemeHelper.Primary;
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.tblInfo.Controls.Add(this.lblTitle, 0, 0);
+            this.tblInfo.SetColumnSpan(this.lblTitle, 4);
 
-            lblValNgayDat = new Label { Text = "18/06/2026", Font = ThemeHelper.FontBody, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
-            lblValTrangThai = new Label { Text = "Cho duyet", Font = ThemeHelper.FontBodyBold, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
-            lblValKhachHang = new Label { Text = "Nguyen Van A", Font = ThemeHelper.FontBody, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
-            lblValNgayDuyet = new Label { Text = "Chua duyet", Font = ThemeHelper.FontBodyBold, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
+            // 
+            // lblNgayDat
+            // 
+            this.lblNgayDat.Text = "Ngày đặt:";
+            this.lblNgayDat.Font = ThemeHelper.FontCaptionBold;
+            this.lblNgayDat.ForeColor = ThemeHelper.TextSecondary;
+            this.lblNgayDat.AutoSize = true;
+            this.lblNgayDat.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.lblNgayDat.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tblInfo.Controls.Add(this.lblNgayDat, 0, 1);
 
-            AddInfoRow(tblInfo, 1, "Ngày đặt:", lblValNgayDat, "Trạng thái:", lblValTrangThai);
-            AddInfoRow(tblInfo, 2, "Khách hàng:", lblValKhachHang, "Ngày duyệt:", lblValNgayDuyet);
+            // 
+            // lblValNgayDat
+            // 
+            this.lblValNgayDat.Text = "18/06/2026";
+            this.lblValNgayDat.Font = ThemeHelper.FontBody;
+            this.lblValNgayDat.ForeColor = ThemeHelper.Text;
+            this.lblValNgayDat.AutoSize = true;
+            this.lblValNgayDat.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.lblValNgayDat.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tblInfo.Controls.Add(this.lblValNgayDat, 1, 1);
 
-            // ── ROW 1: Section label ──────────────────────────────────
-            var lblSection = new Label
-            {
-                Text      = "CHI TIẾT MẶT HÀNG",
-                Font      = ThemeHelper.FontCaptionBold,
-                ForeColor = ThemeHelper.TextSecondary,
-                AutoSize  = true,
-                Margin    = new Padding(0, 4, 0, 6)
-            };
-            root.Controls.Add(lblSection, 0, 1);
+            // 
+            // lblTrangThai
+            // 
+            this.lblTrangThai.Text = "Trạng thái:";
+            this.lblTrangThai.Font = ThemeHelper.FontCaptionBold;
+            this.lblTrangThai.ForeColor = ThemeHelper.TextSecondary;
+            this.lblTrangThai.AutoSize = true;
+            this.lblTrangThai.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.lblTrangThai.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tblInfo.Controls.Add(this.lblTrangThai, 2, 1);
 
-            // ── ROW 2: Grid Card ──────────────────────────────────────
-            var cardGrid = new Guna2Panel
-            {
-                Dock         = DockStyle.Fill,
-                BorderRadius = 12,
-                FillColor    = Color.White,
-                Padding      = new Padding(12),
-                Margin       = new Padding(0, 0, 0, 12)
-            };
-            cardGrid.ShadowDecoration.Enabled = true;
-            root.Controls.Add(cardGrid, 0, 2);
+            // 
+            // lblValTrangThai
+            // 
+            this.lblValTrangThai.Text = "Cho duyet";
+            this.lblValTrangThai.Font = ThemeHelper.FontBodyBold;
+            this.lblValTrangThai.ForeColor = ThemeHelper.Text;
+            this.lblValTrangThai.AutoSize = true;
+            this.lblValTrangThai.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.lblValTrangThai.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tblInfo.Controls.Add(this.lblValTrangThai, 3, 1);
 
-            dgvDetails = new DataGridView
-            {
-                Dock                 = DockStyle.Fill,
-                AutoGenerateColumns  = false
-            };
-            ThemeHelper.StyleFlatDataGrid(dgvDetails);
-            cardGrid.Controls.Add(dgvDetails);
+            // 
+            // lblKhachHang
+            // 
+            this.lblKhachHang.Text = "Khách hàng:";
+            this.lblKhachHang.Font = ThemeHelper.FontCaptionBold;
+            this.lblKhachHang.ForeColor = ThemeHelper.TextSecondary;
+            this.lblKhachHang.AutoSize = true;
+            this.lblKhachHang.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.lblKhachHang.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tblInfo.Controls.Add(this.lblKhachHang, 0, 2);
 
-            // Columns: Tên SP (fill) | Đơn giá (right) | SL (center) | Thành tiền (right)
-            dgvDetails.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText       = "Tên sản phẩm",
-                DataPropertyName = "TenSanPham",
-                AutoSizeMode     = DataGridViewAutoSizeColumnMode.Fill,
-                FillWeight       = 50,
-                ReadOnly         = true
-            });
+            // 
+            // lblValKhachHang
+            // 
+            this.lblValKhachHang.Text = "Nguyen Van A";
+            this.lblValKhachHang.Font = ThemeHelper.FontBody;
+            this.lblValKhachHang.ForeColor = ThemeHelper.Text;
+            this.lblValKhachHang.AutoSize = true;
+            this.lblValKhachHang.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.lblValKhachHang.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tblInfo.Controls.Add(this.lblValKhachHang, 1, 2);
 
-            var colPrice = new DataGridViewTextBoxColumn
-            {
-                HeaderText       = "Đơn giá",
-                DataPropertyName = "DonGiaText",
-                Width            = 110,
-                ReadOnly         = true
-            };
-            colPrice.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            colPrice.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvDetails.Columns.Add(colPrice);
+            // 
+            // lblNgayDuyet
+            // 
+            this.lblNgayDuyet.Text = "Ngày duyệt:";
+            this.lblNgayDuyet.Font = ThemeHelper.FontCaptionBold;
+            this.lblNgayDuyet.ForeColor = ThemeHelper.TextSecondary;
+            this.lblNgayDuyet.AutoSize = true;
+            this.lblNgayDuyet.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.lblNgayDuyet.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tblInfo.Controls.Add(this.lblNgayDuyet, 2, 2);
 
-            var colQty = new DataGridViewTextBoxColumn
-            {
-                HeaderText       = "SL đặt",
-                DataPropertyName = "SoLuong",
-                Width            = 80,
-                ReadOnly         = true
-            };
-            colQty.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            colQty.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvDetails.Columns.Add(colQty);
+            // 
+            // lblValNgayDuyet
+            // 
+            this.lblValNgayDuyet.Text = "Chua duyet";
+            this.lblValNgayDuyet.Font = ThemeHelper.FontBodyBold;
+            this.lblValNgayDuyet.ForeColor = ThemeHelper.Text;
+            this.lblValNgayDuyet.AutoSize = true;
+            this.lblValNgayDuyet.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.lblValNgayDuyet.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tblInfo.Controls.Add(this.lblValNgayDuyet, 3, 2);
 
-            var colTotal = new DataGridViewTextBoxColumn
-            {
-                HeaderText       = "Thành tiền",
-                DataPropertyName = "ThanhTienText",
-                Width            = 120,
-                ReadOnly         = true
-            };
-            colTotal.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            colTotal.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvDetails.Columns.Add(colTotal);
+            // 
+            // lblSection
+            // 
+            this.lblSection.Text = "CHI TIẾT MẶT HÀNG";
+            this.lblSection.Font = ThemeHelper.FontCaptionBold;
+            this.lblSection.ForeColor = ThemeHelper.TextSecondary;
+            this.lblSection.AutoSize = true;
+            this.lblSection.Margin = new System.Windows.Forms.Padding(0, 4, 0, 6);
+            this.root.Controls.Add(this.lblSection, 0, 1);
 
-            // ── ROW 3: Footer Panel ───────────────────────────────────
-            pnlFooter = new Panel
-            {
-                Dock    = DockStyle.Fill,
-                Height  = 46,
-                Margin  = new Padding(0)
-            };
-            root.Controls.Add(pnlFooter, 0, 3);
+            // 
+            // cardGrid
+            // 
+            this.cardGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cardGrid.BorderRadius = 12;
+            this.cardGrid.FillColor = System.Drawing.Color.White;
+            this.cardGrid.Padding = new System.Windows.Forms.Padding(12);
+            this.cardGrid.Margin = new System.Windows.Forms.Padding(0, 0, 0, 12);
+            this.cardGrid.ShadowDecoration.Enabled = true;
+            this.root.Controls.Add(this.cardGrid, 0, 2);
 
-            lblTotal = new Label
-            {
-                Text      = "TỔNG TIỀN: 0 VND",
-                Font      = ThemeHelper.FontH2,
-                ForeColor = ThemeHelper.Danger,
-                AutoSize  = true,
-                Location  = new Point(0, 10)
-            };
-            pnlFooter.Controls.Add(lblTotal);
+            // 
+            // dgvDetails
+            // 
+            this.dgvDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDetails.AutoGenerateColumns = false;
+            this.cardGrid.Controls.Add(this.dgvDetails);
 
-            btnClose = new Guna2Button
-            {
-                Text         = "Đóng",
-                Location     = new Point(600, 4),
-                Size         = new Size(120, 38),
-                BorderRadius = 19,
-                FillColor    = ThemeHelper.Primary,
-                Font         = ThemeHelper.FontBodyBold,
-                ForeColor    = Color.White,
-                Cursor       = Cursors.Hand
-            };
-            pnlFooter.Controls.Add(btnClose);
-        }
+            // columns
+            var colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colName.HeaderText = "Tên sản phẩm";
+            colName.DataPropertyName = "TenSanPham";
+            colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            colName.FillWeight = 50;
+            colName.ReadOnly = true;
+            this.dgvDetails.Columns.Add(colName);
 
-        private void AddInfoRow(TableLayoutPanel table, int row, string label1, Label val1Label, string label2, Label val2Label)
-        {
-            var l1 = new Label { Text = label1, Font = ThemeHelper.FontCaptionBold, ForeColor = ThemeHelper.TextSecondary, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
-            var l2 = new Label { Text = label2, Font = ThemeHelper.FontCaptionBold, ForeColor = ThemeHelper.TextSecondary, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
+            var colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colPrice.HeaderText = "Đơn giá";
+            colPrice.DataPropertyName = "DonGiaText";
+            colPrice.Width = 110;
+            colPrice.ReadOnly = true;
+            colPrice.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            colPrice.HeaderCell.Style.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dgvDetails.Columns.Add(colPrice);
 
-            table.Controls.Add(l1, 0, row);
-            table.Controls.Add(val1Label, 1, row);
-            table.Controls.Add(l2, 2, row);
-            table.Controls.Add(val2Label, 3, row);
+            var colQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colQty.HeaderText = "SL đặt";
+            colQty.DataPropertyName = "SoLuong";
+            colQty.Width = 80;
+            colQty.ReadOnly = true;
+            colQty.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            colQty.HeaderCell.Style.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvDetails.Columns.Add(colQty);
+
+            var colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colTotal.HeaderText = "Thành tiền";
+            colTotal.DataPropertyName = "ThanhTienText";
+            colTotal.Width = 120;
+            colTotal.ReadOnly = true;
+            colTotal.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            colTotal.HeaderCell.Style.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dgvDetails.Columns.Add(colTotal);
+
+            // 
+            // pnlFooter
+            // 
+            this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlFooter.Height = 46;
+            this.pnlFooter.Margin = new System.Windows.Forms.Padding(0);
+            this.root.Controls.Add(this.pnlFooter, 0, 3);
+
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Text = "TỔNG TIỀN: 0 VND";
+            this.lblTotal.Font = ThemeHelper.FontH2;
+            this.lblTotal.ForeColor = ThemeHelper.Danger;
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(0, 10);
+            this.pnlFooter.Controls.Add(this.lblTotal);
+
+            // 
+            // btnClose
+            // 
+            this.btnClose.Text = "Đóng";
+            this.btnClose.Location = new System.Drawing.Point(600, 4);
+            this.btnClose.Size = new System.Drawing.Size(120, 38);
+            this.btnClose.BorderRadius = 19;
+            this.btnClose.FillColor = ThemeHelper.Primary;
+            this.btnClose.Font = ThemeHelper.FontBodyBold;
+            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pnlFooter.Controls.Add(this.btnClose);
+
+            // FORM properties
+            this.MinimumSize = new System.Drawing.Size(700, 540);
+            this.Size = new System.Drawing.Size(760, 580);
+            this.BackColor = ThemeHelper.BackgroundApp;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
         }
 
         #endregion
 
-        private DataGridView dgvDetails;
-        private Label lblTotal;
-        private Guna2Button btnClose;
-        private Label lblTitle;
-        private Label lblValNgayDat;
-        private Label lblValTrangThai;
-        private Label lblValKhachHang;
-        private Label lblValNgayDuyet;
-        private Panel pnlFooter;
+        private System.Windows.Forms.TableLayoutPanel root;
+        private Guna.UI2.WinForms.Guna2Panel cardInfo;
+        private System.Windows.Forms.TableLayoutPanel tblInfo;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblNgayDat;
+        private System.Windows.Forms.Label lblValNgayDat;
+        private System.Windows.Forms.Label lblTrangThai;
+        private System.Windows.Forms.Label lblValTrangThai;
+        private System.Windows.Forms.Label lblKhachHang;
+        private System.Windows.Forms.Label lblValKhachHang;
+        private System.Windows.Forms.Label lblNgayDuyet;
+        private System.Windows.Forms.Label lblValNgayDuyet;
+        private System.Windows.Forms.Label lblSection;
+        private Guna.UI2.WinForms.Guna2Panel cardGrid;
+        private System.Windows.Forms.DataGridView dgvDetails;
+        private System.Windows.Forms.Panel pnlFooter;
+        private System.Windows.Forms.Label lblTotal;
+        private Guna.UI2.WinForms.Guna2Button btnClose;
     }
 }

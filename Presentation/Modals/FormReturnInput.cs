@@ -33,6 +33,9 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
 
         private void SetupData()
         {
+            if (System.ComponentModel.LicenseManager.CurrentContext.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
+                return;
+
             lblProduct.Text = _productName ?? "Sản phẩm";
             int max = _maxQty > 0 ? _maxQty : 1;
             lblPurchased.Text = $"{max} sản phẩm";
@@ -41,7 +44,11 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
 
         private void SetupEvents()
         {
+            if (System.ComponentModel.LicenseManager.CurrentContext.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
+                return;
+
             btnCancel.Click += (s, e) => this.Close();
+            btnSave.Click += BtnSave_Click;
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

@@ -47,6 +47,10 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
 
         private void SetupData()
         {
+            if (System.ComponentModel.LicenseManager.CurrentContext.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
+                return;
+
+            ThemeHelper.StyleComboBox(cbTrangThai);
             lblTitle.Text = _isEdit ? "CẬP NHẬT SẢN PHẨM" : "THÊM SẢN PHẨM MỚI";
 
             txtMaSP.Text = Product.MaSP ?? "";
@@ -65,7 +69,11 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
 
         private void SetupEvents()
         {
+            if (System.ComponentModel.LicenseManager.CurrentContext.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
+                return;
+
             btnCancel.Click += (s, e) => this.Close();
+            btnSave.Click += BtnSave_Click;
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

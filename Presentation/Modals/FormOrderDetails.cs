@@ -16,6 +16,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
         {
             InitializeComponent();
             SetupEvents();
+            SetupData();
         }
 
         public FormOrderDetails(DonDatHang order)
@@ -23,16 +24,28 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             _order = order;
             InitializeComponent();
             SetupEvents();
+            SetupData();
             LoadDetails();
         }
 
         private void SetupEvents()
         {
+            if (System.ComponentModel.LicenseManager.CurrentContext.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
+                return;
+
             btnClose.Click += (s, e) => this.Close();
             pnlFooter.SizeChanged += (s, e) =>
             {
                 btnClose.Left = pnlFooter.Width - btnClose.Width;
             };
+        }
+
+        private void SetupData()
+        {
+            if (System.ComponentModel.LicenseManager.CurrentContext.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
+                return;
+
+            ThemeHelper.StyleFlatDataGrid(dgvDetails);
         }
 
         private void LoadDetails()

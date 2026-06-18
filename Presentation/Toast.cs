@@ -5,6 +5,7 @@ using Guna.UI2.WinForms;
 
 namespace QuanLyCuaHangTapHoa.Presentation
 {
+    [System.ComponentModel.DesignerCategory("Code")]
     public class Toast : Form
     {
         private readonly System.Windows.Forms.Timer _timer;

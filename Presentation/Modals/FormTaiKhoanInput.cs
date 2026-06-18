@@ -71,6 +71,9 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
 
         private void SetupData()
         {
+            if (System.ComponentModel.LicenseManager.CurrentContext.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
+                return;
+
             lblTitle.Text = _isEdit ? "CẬP NHẬT TÀI KHOẢN" : "TẠO TÀI KHOẢN MỚI";
             lblPasswordLabel.Text = _isEdit ? "Mật khẩu mới (bỏ trống để giữ)" : "Mật khẩu *";
             txtMatKhau.PlaceholderText = _isEdit ? "Bỏ trống nếu không đổi..." : "Nhập mật khẩu...";
@@ -82,6 +85,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             txtTenDangNhap.ReadOnly = _isEdit;
 
             cbRole.Enabled = !_isEdit;
+            ThemeHelper.StyleComboBox(cbRole);
             cbRole.DataSource = EnumTranslator.TranslateVaiTro(false);
             cbRole.DisplayMember = "Text";
             cbRole.ValueMember = "Value";
@@ -113,8 +117,20 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
 
         private void SetupEvents()
         {
+            if (System.ComponentModel.LicenseManager.CurrentContext.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
+                return;
+
             cbRole.SelectedIndexChanged += CbRole_SelectedIndexChanged;
             btnCancel.Click += (s, e) => this.Close();
+            btnSave.Click += BtnSave_Click;
+            btnShowHide.Click += BtnShowHide_Click;
+        }
+
+        private void BtnShowHide_Click(object sender, EventArgs e)
+        {
+            txtMatKhau.UseSystemPasswordChar = !txtMatKhau.UseSystemPasswordChar;
+            txtMatKhau.PasswordChar = txtMatKhau.UseSystemPasswordChar ? '●' : '\0';
+            btnShowHide.Text = txtMatKhau.UseSystemPasswordChar ? "👁" : "🙈";
         }
 
         private void CbRole_SelectedIndexChanged(object sender, EventArgs e)

@@ -41,6 +41,9 @@ namespace QuanLyCuaHangTapHoa.Presentation
 
         private void SetupEvents()
         {
+            if (System.ComponentModel.LicenseManager.CurrentContext.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
+                return;
+
             // Apply Theme & Round Corners
             ThemeHelper.StyleForm(this);
             ThemeHelper.RoundControl(this, 16);

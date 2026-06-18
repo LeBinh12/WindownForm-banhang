@@ -32,138 +32,209 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
         /// </summary>
         private void InitializeComponent()
         {
-            this.Size = new Size(680, 480);
-            this.BackColor = Color.White;
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.StartPosition = FormStartPosition.CenterParent;
+            this.pnlMain = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.splitLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlLeft = new System.Windows.Forms.Panel();
+            this.lblSelect = new System.Windows.Forms.Label();
+            this.cbProducts = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.lblQty = new System.Windows.Forms.Label();
+            this.numQty = new System.Windows.Forms.NumericUpDown();
+            this.btnAdd = new Guna.UI2.WinForms.Guna2Button();
+            this.pnlRight = new System.Windows.Forms.Panel();
+            this.dgvCart = new System.Windows.Forms.DataGridView();
+            this.colRemove = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.btnCancel = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSubmit = new Guna.UI2.WinForms.Guna2Button();
 
-            Panel pnlMain = new Panel
-            {
-                Dock = DockStyle.Fill,
-                Padding = new Padding(20),
-                BorderStyle = BorderStyle.FixedSingle
-            };
-            this.Controls.Add(pnlMain);
+            // 
+            // pnlMain
+            // 
+            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMain.Padding = new System.Windows.Forms.Padding(20);
+            this.pnlMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.pnlMain);
 
-            Label lblTitle = new Label
-            {
-                Text = "TẠO YÊU CẦU ĐẶT GIỮ HÀNG KHO",
-                Font = ThemeHelper.FontSubheading,
-                ForeColor = ThemeHelper.Primary,
-                AutoSize = true,
-                Location = new Point(20, 15)
-            };
-            pnlMain.Controls.Add(lblTitle);
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.Text = "TẠO YÊU CẦU ĐẶT GIỮ HÀNG KHO";
+            this.lblTitle.Font = ThemeHelper.FontSubheading;
+            this.lblTitle.ForeColor = ThemeHelper.Primary;
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Location = new System.Drawing.Point(20, 15);
+            this.pnlMain.Controls.Add(this.lblTitle);
 
-            // TableLayout split: Left input (40%), Right list (60%)
-            TableLayoutPanel splitLayout = new TableLayoutPanel
-            {
-                Location = new Point(20, 50),
-                Size = new Size(640, 350),
-                ColumnCount = 2,
-                RowCount = 1,
-                BackColor = Color.Transparent
-            };
-            splitLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
-            splitLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
-            pnlMain.Controls.Add(splitLayout);
+            // 
+            // splitLayout
+            // 
+            this.splitLayout.Location = new System.Drawing.Point(20, 50);
+            this.splitLayout.Size = new System.Drawing.Size(640, 350);
+            this.splitLayout.ColumnCount = 2;
+            this.splitLayout.RowCount = 1;
+            this.splitLayout.BackColor = System.Drawing.Color.Transparent;
+            this.splitLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.splitLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.pnlMain.Controls.Add(this.splitLayout);
 
-            // Left Input Panel
-            Panel pnlLeft = new Panel { Dock = DockStyle.Fill, Padding = new Padding(0, 10, 10, 0) };
-            splitLayout.Controls.Add(pnlLeft, 0, 0);
+            // 
+            // pnlLeft
+            // 
+            this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlLeft.Padding = new System.Windows.Forms.Padding(0, 10, 10, 0);
+            this.splitLayout.Controls.Add(this.pnlLeft, 0, 0);
 
-            var lblSelect = new Label { Text = "Chọn sản phẩm *", Font = ThemeHelper.FontCaptionBold, ForeColor = ThemeHelper.TextSecondary, Location = new Point(0, 10), AutoSize = true };
-            cbProducts = new Guna2ComboBox { Location = new Point(0, 30), Width = 230, Height = 36 };
-            ThemeHelper.StyleComboBox(cbProducts);
-            pnlLeft.Controls.AddRange(new Control[] { lblSelect, cbProducts });
+            // 
+            // lblSelect
+            // 
+            this.lblSelect.Text = "Chọn sản phẩm *";
+            this.lblSelect.Font = ThemeHelper.FontCaptionBold;
+            this.lblSelect.ForeColor = ThemeHelper.TextSecondary;
+            this.lblSelect.Location = new System.Drawing.Point(0, 10);
+            this.lblSelect.AutoSize = true;
 
-            var lblQty = new Label { Text = "Số lượng đặt *", Font = ThemeHelper.FontCaptionBold, ForeColor = ThemeHelper.TextSecondary, Location = new Point(0, 80), AutoSize = true };
-            numQty = new NumericUpDown { Location = new Point(0, 100), Width = 100, Minimum = 1, Maximum = 100, Font = ThemeHelper.FontBody };
-            pnlLeft.Controls.AddRange(new Control[] { lblQty, numQty });
+            // 
+            // cbProducts
+            // 
+            this.cbProducts.Location = new System.Drawing.Point(0, 30);
+            this.cbProducts.Width = 230;
+            this.cbProducts.Height = 36;
 
-            btnAdd = new Guna2Button
-            {
-                Text = "Thêm vào giỏ",
-                Location = new Point(0, 160),
-                Size = new Size(160, 38),
-                BorderRadius = 19,
-                FillColor = ThemeHelper.Primary,
-                Font = ThemeHelper.FontBodyBold,
-                ForeColor = Color.White,
-                Cursor = Cursors.Hand
-            };
-            btnAdd.Click += BtnAdd_Click;
-            pnlLeft.Controls.Add(btnAdd);
+            this.pnlLeft.Controls.Add(this.lblSelect);
+            this.pnlLeft.Controls.Add(this.cbProducts);
 
-            // Right Panel
-            Panel pnlRight = new Panel { Dock = DockStyle.Fill, Padding = new Padding(10, 10, 0, 0) };
-            splitLayout.Controls.Add(pnlRight, 1, 0);
+            // 
+            // lblQty
+            // 
+            this.lblQty.Text = "Số lượng đặt *";
+            this.lblQty.Font = ThemeHelper.FontCaptionBold;
+            this.lblQty.ForeColor = ThemeHelper.TextSecondary;
+            this.lblQty.Location = new System.Drawing.Point(0, 80);
+            this.lblQty.AutoSize = true;
 
-            dgvCart = new DataGridView
-            {
-                Dock = DockStyle.Fill,
-                AutoGenerateColumns = false
-            };
-            ThemeHelper.StyleFlatDataGrid(dgvCart);
-            pnlRight.Controls.Add(dgvCart);
+            // 
+            // numQty
+            // 
+            this.numQty.Location = new System.Drawing.Point(0, 100);
+            this.numQty.Width = 100;
+            this.numQty.Minimum = 1;
+            this.numQty.Maximum = 100;
+            this.numQty.Font = ThemeHelper.FontBody;
 
-            dgvCart.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Sản phẩm", DataPropertyName = "TenSP", Width = 150, AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
-            dgvCart.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "SL", DataPropertyName = "quantity", Width = 50 });
-            dgvCart.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Thành tiền", DataPropertyName = "ThanhTienText", Width = 100 });
+            this.pnlLeft.Controls.Add(this.lblQty);
+            this.pnlLeft.Controls.Add(this.numQty);
 
-            var colRemove = new DataGridViewButtonColumn
-            {
-                Name = "colRemove",
-                HeaderText = "Xóa",
-                Text = "Xóa",
-                UseColumnTextForButtonValue = true,
-                Width = 60
-            };
-            dgvCart.Columns.Add(colRemove);
-            dgvCart.CellClick += DgvCart_CellClick;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Text = "Thêm vào giỏ";
+            this.btnAdd.Location = new System.Drawing.Point(0, 160);
+            this.btnAdd.Size = new System.Drawing.Size(160, 38);
+            this.btnAdd.BorderRadius = 19;
+            this.btnAdd.FillColor = ThemeHelper.Primary;
+            this.btnAdd.Font = ThemeHelper.FontBodyBold;
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pnlLeft.Controls.Add(this.btnAdd);
 
-            // Bottom elements
-            lblTotal = new Label
-            {
-                Text = "TỔNG ĐƠN: 0 VND",
-                Font = ThemeHelper.FontBodyBold,
-                ForeColor = ThemeHelper.Danger,
-                AutoSize = true,
-                Location = new Point(20, 425)
-            };
-            pnlMain.Controls.Add(lblTotal);
+            // 
+            // pnlRight
+            // 
+            this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlRight.Padding = new System.Windows.Forms.Padding(10, 10, 0, 0);
+            this.splitLayout.Controls.Add(this.pnlRight, 1, 0);
 
-            btnCancel = new Guna2Button
-            {
-                Text = "Hủy bỏ",
-                Location = new Point(440, 415),
-                Size = new Size(100, 38),
-                BorderRadius = 19,
-                FillColor = ThemeHelper.BorderLight,
-                HoverState = { FillColor = ThemeHelper.Border },
-                Font = ThemeHelper.FontBodyBold,
-                ForeColor = ThemeHelper.TextSecondary,
-                Cursor = Cursors.Hand
-            };
-            pnlMain.Controls.Add(btnCancel);
+            // 
+            // dgvCart
+            // 
+            this.dgvCart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCart.AutoGenerateColumns = false;
+            this.pnlRight.Controls.Add(this.dgvCart);
 
-            btnSubmit = new Guna2Button
-            {
-                Text = "Gửi yêu cầu",
-                Location = new Point(550, 415),
-                Size = new Size(110, 38),
-                BorderRadius = 19,
-                FillColor = ThemeHelper.Success,
-                HoverState = { FillColor = Color.FromArgb(4, 120, 87) },
-                Font = ThemeHelper.FontBodyBold,
-                ForeColor = Color.White,
-                Cursor = Cursors.Hand
-            };
-            btnSubmit.Click += BtnSubmit_Click;
-            pnlMain.Controls.Add(btnSubmit);
+            // columns
+            var colProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colProduct.HeaderText = "Sản phẩm";
+            colProduct.DataPropertyName = "TenSP";
+            colProduct.Width = 150;
+            colProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dgvCart.Columns.Add(colProduct);
+
+            var colQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colQty.HeaderText = "SL";
+            colQty.DataPropertyName = "quantity";
+            colQty.Width = 50;
+            this.dgvCart.Columns.Add(colQty);
+
+            var colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colTotal.HeaderText = "Thành tiền";
+            colTotal.DataPropertyName = "ThanhTienText";
+            colTotal.Width = 100;
+            this.dgvCart.Columns.Add(colTotal);
+
+            // colRemove
+            this.colRemove.Name = "colRemove";
+            this.colRemove.HeaderText = "Xóa";
+            this.colRemove.Text = "Xóa";
+            this.colRemove.UseColumnTextForButtonValue = true;
+            this.colRemove.Width = 60;
+            this.dgvCart.Columns.Add(this.colRemove);
+
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Text = "TỔNG ĐƠN: 0 VND";
+            this.lblTotal.Font = ThemeHelper.FontBodyBold;
+            this.lblTotal.ForeColor = ThemeHelper.Danger;
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(20, 425);
+            this.pnlMain.Controls.Add(this.lblTotal);
+
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Text = "Hủy bỏ";
+            this.btnCancel.Location = new System.Drawing.Point(440, 415);
+            this.btnCancel.Size = new System.Drawing.Size(100, 38);
+            this.btnCancel.BorderRadius = 19;
+            this.btnCancel.FillColor = ThemeHelper.BorderLight;
+            this.btnCancel.HoverState.FillColor = ThemeHelper.Border;
+            this.btnCancel.Font = ThemeHelper.FontBodyBold;
+            this.btnCancel.ForeColor = ThemeHelper.TextSecondary;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pnlMain.Controls.Add(this.btnCancel);
+
+            // 
+            // btnSubmit
+            // 
+            this.btnSubmit.Text = "Gửi yêu cầu";
+            this.btnSubmit.Location = new System.Drawing.Point(550, 415);
+            this.btnSubmit.Size = new System.Drawing.Size(110, 38);
+            this.btnSubmit.BorderRadius = 19;
+            this.btnSubmit.FillColor = ThemeHelper.Success;
+            this.btnSubmit.HoverState.FillColor = System.Drawing.Color.FromArgb(4, 120, 87);
+            this.btnSubmit.Font = ThemeHelper.FontBodyBold;
+            this.btnSubmit.ForeColor = System.Drawing.Color.White;
+            this.btnSubmit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pnlMain.Controls.Add(this.btnSubmit);
+
+            // FORM properties
+            this.Size = new System.Drawing.Size(680, 480);
+            this.BackColor = System.Drawing.Color.White;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel pnlMain;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.TableLayoutPanel splitLayout;
+        private System.Windows.Forms.Panel pnlLeft;
+        private System.Windows.Forms.Label lblSelect;
+        private System.Windows.Forms.Label lblQty;
+        private System.Windows.Forms.Panel pnlRight;
+        private System.Windows.Forms.DataGridViewButtonColumn colRemove;
 
         private Guna2ComboBox cbProducts;
         private NumericUpDown numQty;

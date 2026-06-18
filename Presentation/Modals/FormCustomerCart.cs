@@ -22,6 +22,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
         {
             InitializeComponent();
             SetupEvents();
+            SetupData();
         }
 
         public FormCustomerCart(IProductUseCase productUseCase, IOrderUseCase orderUseCase, TaiKhoan currentUser)
@@ -32,13 +33,29 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
 
             InitializeComponent();
             SetupEvents();
+            SetupData();
             LoadProducts();
         }
 
         private void SetupEvents()
         {
+            if (System.ComponentModel.LicenseManager.CurrentContext.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
+                return;
+
             dgvCart.DataError += (s, e) => { e.ThrowException = false; };
             btnCancel.Click += (s, e) => this.Close();
+            btnAdd.Click += BtnAdd_Click;
+            dgvCart.CellClick += DgvCart_CellClick;
+            btnSubmit.Click += BtnSubmit_Click;
+        }
+
+        private void SetupData()
+        {
+            if (System.ComponentModel.LicenseManager.CurrentContext.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime)
+                return;
+
+            ThemeHelper.StyleComboBox(cbProducts);
+            ThemeHelper.StyleFlatDataGrid(dgvCart);
         }
 
         private void LoadProducts()
