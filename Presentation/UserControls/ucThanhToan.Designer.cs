@@ -79,12 +79,17 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
             tabThanhToan = new Guna2TabControl
             {
                 Dock = DockStyle.Fill,
-                TabButtonHoverState = { FillColor = ThemeHelper.SidebarActiveBg, InnerColor = ThemeHelper.Primary, ForeColor = Color.White },
-                TabButtonSelectedState = { FillColor = ThemeHelper.SidebarBg, InnerColor = Color.FromArgb(77, 142, 240), ForeColor = Color.White },
-                TabButtonIdleState = { FillColor = Color.FromArgb(240, 243, 250), ForeColor = ThemeHelper.TextSecondary },
                 TabButtonSize = new Size(240, 40),
                 Alignment = TabAlignment.Top
             };
+            tabThanhToan.TabButtonHoverState.FillColor = ThemeHelper.SidebarActiveBg;
+            tabThanhToan.TabButtonHoverState.InnerColor = ThemeHelper.Primary;
+            tabThanhToan.TabButtonHoverState.ForeColor = Color.White;
+            tabThanhToan.TabButtonSelectedState.FillColor = ThemeHelper.SidebarBg;
+            tabThanhToan.TabButtonSelectedState.InnerColor = Color.FromArgb(77, 142, 240);
+            tabThanhToan.TabButtonSelectedState.ForeColor = Color.White;
+            tabThanhToan.TabButtonIdleState.FillColor = Color.FromArgb(240, 243, 250);
+            tabThanhToan.TabButtonIdleState.ForeColor = ThemeHelper.TextSecondary;
             tblRoot.Controls.Add(tabThanhToan, 0, 1);
 
             tabPos = new TabPage { Text = "💳  Bán lẻ & Nhận Đơn đặt giữ", BackColor = ThemeHelper.BackgroundApp };
@@ -141,7 +146,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
             tblPosFilter.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));  // Col 1: Qty Input
             tblPosFilter.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));       // Col 2: Add Button
             tblPosFilter.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));  // Col 3: Spacer
-            tblPosFilter.RowStyles.Add(PenStyle(100F));
+            tblPosFilter.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tblPosLeftLayout.Controls.Add(tblPosFilter, 0, 1);
 
             cbPosProducts = new Guna2ComboBox { Dock = DockStyle.Fill, Margin = new Padding(0, 0, 12, 0) };
@@ -182,7 +187,6 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
             dgvPosCart.DefaultCellStyle.Font = new Font("Segoe UI", 9f);
             dgvPosCart.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
 
-            dgvPosCart.DataError += (s, e) => { e.ThrowException = false; };
             dgvPosCart.CellClick += DgvPosCart_CellClick;
             tblPosLeftLayout.Controls.Add(dgvPosCart, 0, 2);
 
@@ -256,11 +260,11 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
                 Size = new Size(100, 38),
                 BorderRadius = 19,
                 FillColor = ThemeHelper.BorderLight,
-                HoverState = { FillColor = ThemeHelper.Border },
                 Font = ThemeHelper.FontBodyBold,
                 ForeColor = ThemeHelper.TextSecondary,
                 Cursor = Cursors.Hand
             };
+            btnPosClear.HoverState.FillColor = ThemeHelper.Border;
             btnPosClear.Click += BtnPosClear_Click;
             pnlPosBottom.Controls.AddRange(new Control[] { lblPosTotal, btnPosCheckout, btnPosClear });
             tblPosLeftLayout.Controls.Add(pnlPosBottom, 0, 3);
@@ -354,7 +358,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
             tblReturnFilter.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));       // Col 2: Date Info
             tblReturnFilter.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));       // Col 3: Total Info
             tblReturnFilter.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));  // Col 4: Spacer
-            tblReturnFilter.RowStyles.Add(PenStyle(100F));
+            tblReturnFilter.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             cardReturnSearch.Controls.Add(tblReturnFilter);
 
             txtSearchInvoiceId = new Guna2TextBox { Dock = DockStyle.Fill, BorderRadius = 6, BorderColor = ThemeHelper.Border, Font = ThemeHelper.FontBody, ForeColor = ThemeHelper.Text, PlaceholderText = "Nhập mã hóa đơn...", Margin = new Padding(0, 4, 12, 0) };
@@ -401,7 +405,6 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
             dgvInvoiceDetails.DefaultCellStyle.Font = new Font("Segoe UI", 9f);
             dgvInvoiceDetails.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
 
-            dgvInvoiceDetails.DataError += (s, e) => { e.ThrowException = false; };
             dgvInvoiceDetails.CellClick += DgvInvoiceDetails_CellClick;
             cardReturnDetails.Controls.Add(dgvInvoiceDetails);
 
@@ -480,7 +483,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
             tblHistoryFilter.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 240F)); // Col 0: Search input
             tblHistoryFilter.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));       // Col 1: Search Btn
             tblHistoryFilter.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));  // Col 2: Spacer
-            tblHistoryFilter.RowStyles.Add(PenStyle(100F));
+            tblHistoryFilter.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             cardHistoryFilter.Controls.Add(tblHistoryFilter);
 
             txtSearchHistory = new Guna2TextBox { Dock = DockStyle.Fill, BorderRadius = 6, BorderColor = ThemeHelper.Border, Font = ThemeHelper.FontBody, ForeColor = ThemeHelper.Text, PlaceholderText = "Tìm theo mã hóa đơn, mã đơn...", Margin = new Padding(0, 4, 12, 0) };
@@ -497,7 +500,6 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
                 Cursor = Cursors.Hand,
                 Margin = new Padding(0)
             };
-            btnSearchHistory.Click += (s, e) => LoadInvoiceHistory();
             tblHistoryFilter.Controls.Add(btnSearchHistory, 1, 0);
 
             // Grid Panel
@@ -521,7 +523,6 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
             dgvHistoryInvoices.DefaultCellStyle.Font = new Font("Segoe UI", 9f);
             dgvHistoryInvoices.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
 
-            dgvHistoryInvoices.DataError += (s, e) => { e.ThrowException = false; };
             cardHistoryGrid.Controls.Add(dgvHistoryInvoices);
 
             dgvHistoryInvoices.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Mã Hóa Đơn", DataPropertyName = "MaHoaDon", Width = 160, ReadOnly = true });
@@ -539,15 +540,6 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
 
             dgvHistoryInvoices.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Mã Đơn Gốc", DataPropertyName = "MaDon", Width = 130, ReadOnly = true });
             dgvHistoryInvoices.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Nhân Viên Lập", DataPropertyName = "NhanVien", AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill, FillWeight = 30, ReadOnly = true });
-
-            // Tab selection changed
-            tabThanhToan.SelectedIndexChanged += (s, e) =>
-            {
-                if (tabThanhToan.SelectedTab == tabHistory)
-                {
-                    LoadInvoiceHistory();
-                }
-            };
         }
 
         private static RowStyle PenStyle(float pct)

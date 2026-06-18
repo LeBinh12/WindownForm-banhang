@@ -19,6 +19,8 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
         public ucSanPham()
         {
             InitializeComponent();
+            SetupEvents();
+            SetupData();
         }
 
         public ucSanPham(IProductUseCase productUseCase, TaiKhoan currentUser)
@@ -27,8 +29,56 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
             _currentUser = currentUser;
 
             InitializeComponent();
+            SetupEvents();
+            SetupData();
             LoadCategories();
             LoadData();
+        }
+
+        private void SetupEvents()
+        {
+            btnSearch.Click += (s, e) => LoadData();
+        }
+
+        private void SetupData()
+        {
+            bool isStaff = _currentUser != null && (_currentUser.NguoiDung is NhanVien || _currentUser.NguoiDung is Admin);
+            btnAddNew.Visible = isStaff;
+
+            if (isStaff)
+            {
+                if (!dgvProducts.Columns.Contains("colEdit"))
+                {
+                    var colEdit = new DataGridViewButtonColumn
+                    {
+                        Name = "colEdit",
+                        HeaderText = "Sửa",
+                        Text = "Sửa",
+                        UseColumnTextForButtonValue = true,
+                        Width = 70,
+                        FlatStyle = FlatStyle.Flat,
+                        Resizable = DataGridViewTriState.False
+                    };
+                    colEdit.DefaultCellStyle.Font = new Font("Segoe UI", 9f);
+                    dgvProducts.Columns.Add(colEdit);
+                }
+
+                if (!dgvProducts.Columns.Contains("colDelete"))
+                {
+                    var colDelete = new DataGridViewButtonColumn
+                    {
+                        Name = "colDelete",
+                        HeaderText = "Ngừng KD",
+                        Text = "Ngừng KD",
+                        UseColumnTextForButtonValue = true,
+                        Width = 110,
+                        FlatStyle = FlatStyle.Flat,
+                        Resizable = DataGridViewTriState.False
+                    };
+                    colDelete.DefaultCellStyle.Font = new Font("Segoe UI", 9f);
+                    dgvProducts.Columns.Add(colDelete);
+                }
+            }
         }
 
         private void LoadCategories()

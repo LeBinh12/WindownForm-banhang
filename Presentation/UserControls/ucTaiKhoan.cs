@@ -19,6 +19,8 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
         public ucTaiKhoan()
         {
             InitializeComponent();
+            SetupEvents();
+            SetupData();
         }
 
         public ucTaiKhoan(IAccountUseCase accountUseCase, TaiKhoan currentUser)
@@ -27,9 +29,33 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
             _currentUser = currentUser;
 
             InitializeComponent();
+            SetupEvents();
+            SetupData();
             if (_currentUser != null && _currentUser.NguoiDung is Admin)
             {
                 LoadData();
+            }
+        }
+
+        private void SetupEvents()
+        {
+            btnSearch.Click += (s, e) => LoadData();
+        }
+
+        private void SetupData()
+        {
+            if (_currentUser != null && !(_currentUser.NguoiDung is Admin))
+            {
+                this.Controls.Clear();
+                var lblError = new Label
+                {
+                    Text = "🔒 BẠN KHÔNG CÓ QUYỀN TRUY CẬP CHỨC NĂNG QUẢN TRỊ NÀY.",
+                    Font = ThemeHelper.FontSubheading,
+                    ForeColor = ThemeHelper.Danger,
+                    AutoSize = true,
+                    Location = new Point(40, 40)
+                };
+                this.Controls.Add(lblError);
             }
         }
 

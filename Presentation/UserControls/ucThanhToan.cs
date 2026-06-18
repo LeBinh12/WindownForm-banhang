@@ -24,6 +24,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
         public ucThanhToan()
         {
             InitializeComponent();
+            SetupEvents();
         }
 
         public ucThanhToan(
@@ -38,8 +39,24 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
             _currentUser = currentUser;
 
             InitializeComponent();
+            SetupEvents();
             LoadPOSProducts();
             LoadApprovedOrders();
+        }
+
+        private void SetupEvents()
+        {
+            dgvPosCart.DataError += (s, e) => { e.ThrowException = false; };
+            dgvInvoiceDetails.DataError += (s, e) => { e.ThrowException = false; };
+            btnSearchHistory.Click += (s, e) => LoadInvoiceHistory();
+            dgvHistoryInvoices.DataError += (s, e) => { e.ThrowException = false; };
+            tabThanhToan.SelectedIndexChanged += (s, e) =>
+            {
+                if (tabThanhToan.SelectedTab == tabHistory)
+                {
+                    LoadInvoiceHistory();
+                }
+            };
         }
 
         private void LoadPOSProducts()

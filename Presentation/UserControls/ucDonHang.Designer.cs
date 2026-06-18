@@ -88,44 +88,35 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
             };
             tblHeader.Controls.Add(flowHeaderActions, 1, 0);
 
-            bool isStaff = _currentUser != null && (_currentUser.NguoiDung is NhanVien || _currentUser.NguoiDung is Admin);
+            btnCleanExpired = new Guna2Button
+            {
+                Text = "Thu hồi đơn hết hạn",
+                AutoSize = true,
+                Padding = new Padding(12, 6, 12, 6),
+                BorderRadius = 20,
+                FillColor = ThemeHelper.Warning,
+                Font = ThemeHelper.FontBodyBold,
+                ForeColor = Color.White,
+                Cursor = Cursors.Hand,
+                Margin = new Padding(8, 0, 0, 0)
+            };
+            btnCleanExpired.HoverState.FillColor = Color.FromArgb(217, 119, 6);
+            btnCleanExpired.Click += BtnCleanExpired_Click;
 
-            if (isStaff)
+            btnAddNew = new Guna2Button
             {
-                btnCleanExpired = new Guna2Button
-                {
-                    Text = "Thu hồi đơn hết hạn",
-                    AutoSize = true,
-                    Padding = new Padding(12, 6, 12, 6),
-                    BorderRadius = 20,
-                    FillColor = ThemeHelper.Warning,
-                    HoverState = { FillColor = Color.FromArgb(217, 119, 6) },
-                    Font = ThemeHelper.FontBodyBold,
-                    ForeColor = Color.White,
-                    Cursor = Cursors.Hand,
-                    Margin = new Padding(8, 0, 0, 0)
-                };
-                btnCleanExpired.Click += BtnCleanExpired_Click;
-                flowHeaderActions.Controls.Add(btnCleanExpired);
-            }
-            else if (_currentUser != null && _currentUser.NguoiDung is KhachHang)
-            {
-                btnAddNew = new Guna2Button
-                {
-                    Text = "+ Tạo yêu cầu đặt giữ",
-                    AutoSize = true,
-                    Padding = new Padding(12, 6, 12, 6),
-                    BorderRadius = 20,
-                    FillColor = ThemeHelper.Success,
-                    HoverState = { FillColor = Color.FromArgb(4, 120, 87) },
-                    Font = ThemeHelper.FontBodyBold,
-                    ForeColor = Color.White,
-                    Cursor = Cursors.Hand,
-                    Margin = new Padding(8, 0, 0, 0)
-                };
-                btnAddNew.Click += BtnAddNew_Click;
-                flowHeaderActions.Controls.Add(btnAddNew);
-            }
+                Text = "+ Tạo yêu cầu đặt giữ",
+                AutoSize = true,
+                Padding = new Padding(12, 6, 12, 6),
+                BorderRadius = 20,
+                FillColor = ThemeHelper.Success,
+                Font = ThemeHelper.FontBodyBold,
+                ForeColor = Color.White,
+                Cursor = Cursors.Hand,
+                Margin = new Padding(8, 0, 0, 0)
+            };
+            btnAddNew.HoverState.FillColor = Color.FromArgb(4, 120, 87);
+            btnAddNew.Click += BtnAddNew_Click;
 
             // ==================== ROW 1: FILTERBAR (TableLayoutPanel 4 Cols) ====================
             tblFilter = new TableLayoutPanel
@@ -162,13 +153,12 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
                 Size = new Size(110, 36),
                 BorderRadius = 18,
                 FillColor = ThemeHelper.Primary,
-                HoverState = { FillColor = ThemeHelper.PrimaryHover },
                 Font = ThemeHelper.FontBodyBold,
                 ForeColor = Color.White,
                 Cursor = Cursors.Hand,
                 Margin = new Padding(0, 0, 12, 0)
             };
-            btnSearch.Click += (s, e) => LoadData();
+            btnSearch.HoverState.FillColor = ThemeHelper.PrimaryHover;
             tblFilter.Controls.Add(btnSearch, 1, 0);
 
             btnReset = new Guna2Button
@@ -177,12 +167,12 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
                 Size = new Size(110, 36),
                 BorderRadius = 18,
                 FillColor = ThemeHelper.BorderLight,
-                HoverState = { FillColor = ThemeHelper.Border },
                 Font = ThemeHelper.FontBodyBold,
                 ForeColor = ThemeHelper.TextSecondary,
                 Cursor = Cursors.Hand,
                 Margin = new Padding(0, 0, 0, 0)
             };
+            btnReset.HoverState.FillColor = ThemeHelper.Border;
             btnReset.Click += BtnReset_Click;
             tblFilter.Controls.Add(btnReset, 2, 0);
 
@@ -231,34 +221,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
             colView.DefaultCellStyle.Font = new Font("Segoe UI", 9f);
             dgvOrders.Columns.Add(colView);
 
-            if (isStaff)
-            {
-                var colApprove = new DataGridViewButtonColumn
-                {
-                    Name = "colApprove",
-                    HeaderText = "Duyệt",
-                    Text = "Duyệt",
-                    UseColumnTextForButtonValue = true,
-                    Width = 70,
-                    FlatStyle = FlatStyle.Flat,
-                    Resizable = DataGridViewTriState.False
-                };
-                colApprove.DefaultCellStyle.Font = new Font("Segoe UI", 9f);
-                dgvOrders.Columns.Add(colApprove);
 
-                var colReject = new DataGridViewButtonColumn
-                {
-                    Name = "colReject",
-                    HeaderText = "Hủy đơn",
-                    Text = "Hủy đơn",
-                    UseColumnTextForButtonValue = true,
-                    Width = 110,
-                    FlatStyle = FlatStyle.Flat,
-                    Resizable = DataGridViewTriState.False
-                };
-                colReject.DefaultCellStyle.Font = new Font("Segoe UI", 9f);
-                dgvOrders.Columns.Add(colReject);
-            }
         }
 
         #endregion

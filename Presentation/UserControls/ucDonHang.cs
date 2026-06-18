@@ -19,6 +19,8 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
         public ucDonHang()
         {
             InitializeComponent();
+            SetupEvents();
+            SetupData();
         }
 
         public ucDonHang(IOrderUseCase orderUseCase, IProductUseCase productUseCase, TaiKhoan currentUser)
@@ -28,7 +30,66 @@ namespace QuanLyCuaHangTapHoa.Presentation.UserControls
             _currentUser = currentUser;
 
             InitializeComponent();
+            SetupEvents();
+            SetupData();
             LoadData();
+        }
+
+        private void SetupEvents()
+        {
+            btnSearch.Click += (s, e) => LoadData();
+        }
+
+        private void SetupData()
+        {
+            bool isStaff = _currentUser != null && (_currentUser.NguoiDung is NhanVien || _currentUser.NguoiDung is Admin);
+
+            flowHeaderActions.Controls.Clear();
+            if (isStaff)
+            {
+                flowHeaderActions.Controls.Add(btnCleanExpired);
+
+                if (!dgvOrders.Columns.Contains("colApprove"))
+                {
+                    var colApprove = new DataGridViewButtonColumn
+                    {
+                        Name = "colApprove",
+                        HeaderText = "Duyệt",
+                        Text = "Duyệt",
+                        UseColumnTextForButtonValue = true,
+                        Width = 70,
+                        FlatStyle = FlatStyle.Flat,
+                        Resizable = DataGridViewTriState.False
+                    };
+                    colApprove.DefaultCellStyle.Font = new Font("Segoe UI", 9f);
+                    dgvOrders.Columns.Add(colApprove);
+                }
+
+                if (!dgvOrders.Columns.Contains("colReject"))
+                {
+                    var colReject = new DataGridViewButtonColumn
+                    {
+                        Name = "colReject",
+                        HeaderText = "Hủy đơn",
+                        Text = "Hủy đơn",
+                        UseColumnTextForButtonValue = true,
+                        Width = 110,
+                        FlatStyle = FlatStyle.Flat,
+                        Resizable = DataGridViewTriState.False
+                    };
+                    colReject.DefaultCellStyle.Font = new Font("Segoe UI", 9f);
+                    dgvOrders.Columns.Add(colReject);
+                }
+            }
+            else if (_currentUser != null && _currentUser.NguoiDung is KhachHang)
+            {
+                flowHeaderActions.Controls.Add(btnAddNew);
+            }
+            else
+            {
+                flowHeaderActions.Controls.Add(btnCleanExpired);
+                flowHeaderActions.Controls.Add(btnAddNew);
+            }
         }
 
         private void LoadData()
