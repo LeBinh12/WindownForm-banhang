@@ -72,6 +72,7 @@ namespace QuanLyCuaHangTapHoa.Presentation
 
         private void SetupData()
         {
+            ThemeHelper.StyleForm(this);
             if (_currentUser != null && !string.IsNullOrEmpty(_currentUser.TenDangNhap))
             {
                 lblAvatar.Text = _currentUser.TenDangNhap.Substring(0, Math.Min(2, _currentUser.TenDangNhap.Length)).ToUpper();

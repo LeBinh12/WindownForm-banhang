@@ -35,307 +35,326 @@ namespace QuanLyCuaHangTapHoa.Presentation
         /// </summary>
         private void InitializeComponent()
         {
-            this.Size = new Size(1150, 720);
-            this.MinimumSize = new Size(1100, 650);
+            this.rootLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlSidebar = new System.Windows.Forms.Panel();
+            this.flowSidebar = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlSidebarHeader = new System.Windows.Forms.Panel();
+            this.lblAppTitle = new System.Windows.Forms.Label();
+            this.btnToggleSidebar = new System.Windows.Forms.Button();
+            this.pnlProfile = new System.Windows.Forms.Panel();
+            this.lblUserGreeting = new System.Windows.Forms.Label();
+            this.lblUserRole = new System.Windows.Forms.Label();
+            this.btnProducts = new Guna.UI2.WinForms.Guna2Button();
+            this.btnOrders = new Guna.UI2.WinForms.Guna2Button();
+            this.btnPOS = new Guna.UI2.WinForms.Guna2Button();
+            this.btnAccounts = new Guna.UI2.WinForms.Guna2Button();
+            this.btnLogout = new Guna.UI2.WinForms.Guna2Button();
+            this.pnlIndicator = new System.Windows.Forms.Panel();
+            this.rightLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlTopbar = new System.Windows.Forms.Panel();
+            this.lblPageTitle = new System.Windows.Forms.Label();
+            this.lblAvatar = new System.Windows.Forms.Label();
+            this.lblBell = new System.Windows.Forms.Label();
+            this.pnlContent = new System.Windows.Forms.Panel();
+
+            // 
+            // rootLayout
+            // 
+            this.rootLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rootLayout.ColumnCount = 2;
+            this.rootLayout.RowCount = 1;
+            this.rootLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.rootLayout.Padding = new System.Windows.Forms.Padding(0);
+            this.rootLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 230F));
+            this.rootLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.rootLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.Controls.Add(this.rootLayout);
+
+            // 
+            // pnlSidebar
+            // 
+            this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlSidebar.BackColor = ThemeHelper.SidebarBg;
+            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(0);
+            this.rootLayout.Controls.Add(this.pnlSidebar, 0, 0);
+
+            // 
+            // flowSidebar
+            // 
+            this.flowSidebar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowSidebar.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowSidebar.WrapContents = false;
+            this.flowSidebar.BackColor = System.Drawing.Color.Transparent;
+            this.flowSidebar.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlSidebar.Controls.Add(this.flowSidebar);
+
+            // 
+            // pnlSidebarHeader
+            // 
+            this.pnlSidebarHeader.Width = 230;
+            this.pnlSidebarHeader.Height = 65;
+            this.pnlSidebarHeader.BackColor = System.Drawing.Color.Transparent;
+            this.pnlSidebarHeader.Margin = new System.Windows.Forms.Padding(0);
+
+            // 
+            // lblAppTitle
+            // 
+            this.lblAppTitle.Text = "🏪 MART SYSTEM";
+            this.lblAppTitle.ForeColor = System.Drawing.Color.White;
+            this.lblAppTitle.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+            this.lblAppTitle.Location = new System.Drawing.Point(15, 18);
+            this.lblAppTitle.Size = new System.Drawing.Size(160, 30);
+            this.lblAppTitle.BackColor = System.Drawing.Color.Transparent;
+
+            // 
+            // btnToggleSidebar
+            // 
+            this.btnToggleSidebar.Text = "◀";
+            this.btnToggleSidebar.Size = new System.Drawing.Size(25, 25);
+            this.btnToggleSidebar.Location = new System.Drawing.Point(190, 20);
+            this.btnToggleSidebar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnToggleSidebar.ForeColor = System.Drawing.Color.White;
+            this.btnToggleSidebar.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.btnToggleSidebar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnToggleSidebar.BackColor = System.Drawing.Color.Transparent;
+            this.btnToggleSidebar.FlatAppearance.BorderSize = 0;
+            this.btnToggleSidebar.Click += new System.EventHandler(this.BtnToggleSidebar_Click);
+
+            this.pnlSidebarHeader.Controls.Add(this.lblAppTitle);
+            this.pnlSidebarHeader.Controls.Add(this.btnToggleSidebar);
+            this.flowSidebar.Controls.Add(this.pnlSidebarHeader);
+
+            // 
+            // pnlProfile
+            // 
+            this.pnlProfile.Width = 230;
+            this.pnlProfile.Height = 85;
+            this.pnlProfile.BackColor = System.Drawing.Color.FromArgb(35, 50, 85);
+            this.pnlProfile.Margin = new System.Windows.Forms.Padding(0);
+
+            // 
+            // lblUserGreeting
+            // 
+            this.lblUserGreeting.Text = "User";
+            this.lblUserGreeting.ForeColor = System.Drawing.Color.White;
+            this.lblUserGreeting.Font = ThemeHelper.FontBodyBold;
+            this.lblUserGreeting.Location = new System.Drawing.Point(15, 18);
+            this.lblUserGreeting.Width = 200;
+            this.lblUserGreeting.AutoEllipsis = true;
+
+            // 
+            // lblUserRole
+            // 
+            this.lblUserRole.Text = "ROLE";
+            this.lblUserRole.ForeColor = ThemeHelper.Success;
+            this.lblUserRole.Font = new System.Drawing.Font("Segoe UI", 7.5F, System.Drawing.FontStyle.Bold);
+            this.lblUserRole.Location = new System.Drawing.Point(15, 42);
+            this.lblUserRole.AutoSize = true;
+
+            this.pnlProfile.Controls.Add(this.lblUserGreeting);
+            this.pnlProfile.Controls.Add(this.lblUserRole);
+            this.flowSidebar.Controls.Add(this.pnlProfile);
+
+            // 
+            // btnProducts
+            // 
+            this.btnProducts.Text = "📦  Sản phẩm & Kho";
+            this.btnProducts.Size = new System.Drawing.Size(230, 48);
+            this.btnProducts.FillColor = ThemeHelper.SidebarBg;
+            this.btnProducts.ForeColor = ThemeHelper.TextMuted;
+            this.btnProducts.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnProducts.TextAlign = HorizontalAlignment.Left;
+            this.btnProducts.TextOffset = new System.Drawing.Point(10, 0);
+            this.btnProducts.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnProducts.BorderRadius = 0;
+            this.btnProducts.Margin = new System.Windows.Forms.Padding(0);
+            this.btnProducts.HoverState.FillColor = ThemeHelper.SidebarActiveBg;
+            this.btnProducts.HoverState.ForeColor = System.Drawing.Color.White;
+
+            // 
+            // btnOrders
+            // 
+            this.btnOrders.Text = "📝  Đơn đặt giữ hàng";
+            this.btnOrders.Size = new System.Drawing.Size(230, 48);
+            this.btnOrders.FillColor = ThemeHelper.SidebarBg;
+            this.btnOrders.ForeColor = ThemeHelper.TextMuted;
+            this.btnOrders.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnOrders.TextAlign = HorizontalAlignment.Left;
+            this.btnOrders.TextOffset = new System.Drawing.Point(10, 0);
+            this.btnOrders.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOrders.BorderRadius = 0;
+            this.btnOrders.Margin = new System.Windows.Forms.Padding(0);
+            this.btnOrders.HoverState.FillColor = ThemeHelper.SidebarActiveBg;
+            this.btnOrders.HoverState.ForeColor = System.Drawing.Color.White;
+
+            // 
+            // btnPOS
+            // 
+            this.btnPOS.Text = "💳  Thanh toán POS";
+            this.btnPOS.Size = new System.Drawing.Size(230, 48);
+            this.btnPOS.FillColor = ThemeHelper.SidebarBg;
+            this.btnPOS.ForeColor = ThemeHelper.TextMuted;
+            this.btnPOS.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnPOS.TextAlign = HorizontalAlignment.Left;
+            this.btnPOS.TextOffset = new System.Drawing.Point(10, 0);
+            this.btnPOS.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPOS.BorderRadius = 0;
+            this.btnPOS.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPOS.HoverState.FillColor = ThemeHelper.SidebarActiveBg;
+            this.btnPOS.HoverState.ForeColor = System.Drawing.Color.White;
+
+            // 
+            // btnAccounts
+            // 
+            this.btnAccounts.Text = "👤  Quản lý tài khoản";
+            this.btnAccounts.Size = new System.Drawing.Size(230, 48);
+            this.btnAccounts.FillColor = ThemeHelper.SidebarBg;
+            this.btnAccounts.ForeColor = ThemeHelper.TextMuted;
+            this.btnAccounts.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnAccounts.TextAlign = HorizontalAlignment.Left;
+            this.btnAccounts.TextOffset = new System.Drawing.Point(10, 0);
+            this.btnAccounts.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAccounts.BorderRadius = 0;
+            this.btnAccounts.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAccounts.HoverState.FillColor = ThemeHelper.SidebarActiveBg;
+            this.btnAccounts.HoverState.ForeColor = System.Drawing.Color.White;
+
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Text = "🚪  Đăng xuất";
+            this.btnLogout.Size = new System.Drawing.Size(230, 48);
+            this.btnLogout.FillColor = ThemeHelper.SidebarBg;
+            this.btnLogout.ForeColor = ThemeHelper.Danger;
+            this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnLogout.TextAlign = HorizontalAlignment.Left;
+            this.btnLogout.TextOffset = new System.Drawing.Point(10, 0);
+            this.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogout.BorderRadius = 0;
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(0);
+            this.btnLogout.HoverState.FillColor = ThemeHelper.SidebarActiveBg;
+            this.btnLogout.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
+
+            this.flowSidebar.Controls.Add(this.btnProducts);
+            this.flowSidebar.Controls.Add(this.btnOrders);
+            this.flowSidebar.Controls.Add(this.btnPOS);
+            this.flowSidebar.Controls.Add(this.btnAccounts);
+            this.flowSidebar.Controls.Add(this.btnLogout);
+
+            // 
+            // pnlIndicator
+            // 
+            this.pnlIndicator.Width = 4;
+            this.pnlIndicator.Height = 48;
+            this.pnlIndicator.BackColor = System.Drawing.Color.FromArgb(77, 142, 240);
+            this.pnlIndicator.Location = new System.Drawing.Point(0, 0);
+            this.pnlIndicator.Visible = false;
+            this.pnlSidebar.Controls.Add(this.pnlIndicator);
+
+            // 
+            // rightLayout
+            // 
+            this.rightLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rightLayout.ColumnCount = 1;
+            this.rightLayout.RowCount = 2;
+            this.rightLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.rightLayout.Padding = new System.Windows.Forms.Padding(0);
+            this.rightLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.rightLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.rightLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.rootLayout.Controls.Add(this.rightLayout, 1, 0);
+
+            // 
+            // pnlTopbar
+            // 
+            this.pnlTopbar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlTopbar.BackColor = System.Drawing.Color.White;
+            this.pnlTopbar.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.pnlTopbar.Margin = new System.Windows.Forms.Padding(0);
+            this.rightLayout.Controls.Add(this.pnlTopbar, 0, 0);
+
+            // 
+            // lblPageTitle
+            // 
+            this.lblPageTitle.Text = "Trang chủ";
+            this.lblPageTitle.Font = ThemeHelper.FontH2;
+            this.lblPageTitle.ForeColor = ThemeHelper.Primary;
+            this.lblPageTitle.Location = new System.Drawing.Point(15, 18);
+            this.lblPageTitle.AutoSize = true;
+            this.lblPageTitle.Anchor = System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Top;
+
+            // 
+            // lblAvatar
+            // 
+            this.lblAvatar.Text = "US";
+            this.lblAvatar.Font = ThemeHelper.FontBodyBold;
+            this.lblAvatar.ForeColor = ThemeHelper.Primary;
+            this.lblAvatar.BackColor = ThemeHelper.PrimaryLight;
+            this.lblAvatar.Size = new System.Drawing.Size(34, 34);
+            this.lblAvatar.Location = new System.Drawing.Point(840, 13);
+            this.lblAvatar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblAvatar.Anchor = System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Top;
+
+            // 
+            // lblBell
+            // 
+            this.lblBell.Text = "🔔";
+            this.lblBell.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lblBell.ForeColor = ThemeHelper.TextSecondary;
+            this.lblBell.Size = new System.Drawing.Size(30, 30);
+            this.lblBell.Location = new System.Drawing.Point(800, 15);
+            this.lblBell.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblBell.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblBell.Anchor = System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Top;
+
+            this.pnlTopbar.Controls.Add(this.lblPageTitle);
+            this.pnlTopbar.Controls.Add(this.lblAvatar);
+            this.pnlTopbar.Controls.Add(this.lblBell);
+
+            // 
+            // pnlContent
+            // 
+            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContent.BackColor = ThemeHelper.BackgroundApp;
+            this.pnlContent.Padding = new System.Windows.Forms.Padding(0);
+            this.pnlContent.Margin = new System.Windows.Forms.Padding(0);
+            this.rightLayout.Controls.Add(this.pnlContent, 0, 1);
+
+            // FORM properties
+            this.Size = new System.Drawing.Size(1150, 720);
+            this.MinimumSize = new System.Drawing.Size(1100, 650);
             this.Text = "Hệ thống Quản Lý Cửa Hàng Tạp Hóa";
-            this.StartPosition = FormStartPosition.CenterScreen;
-            ThemeHelper.StyleForm(this);
-
-            // Master TableLayoutPanel (2 Columns x 1 Row)
-            rootLayout = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 2,
-                RowCount = 1,
-                Margin = new Padding(0),
-                Padding = new Padding(0)
-            };
-            rootLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 230F)); // Col 0: Sidebar
-            rootLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));  // Col 1: Right Side
-            rootLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            this.Controls.Add(rootLayout);
-
-            // 1. SIDEBAR PANEL (Col 0)
-            pnlSidebar = new Panel
-            {
-                Dock = DockStyle.Fill,
-                BackColor = ThemeHelper.SidebarBg,
-                Margin = new Padding(0)
-            };
-            rootLayout.Controls.Add(pnlSidebar, 0, 0);
-
-            // FlowLayout for vertical menu list
-            flowSidebar = new FlowLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                FlowDirection = FlowDirection.TopDown,
-                WrapContents = false,
-                BackColor = Color.Transparent,
-                Margin = new Padding(0)
-            };
-            pnlSidebar.Controls.Add(flowSidebar);
-
-            // Sidebar Header (App Title & Toggle Button)
-            pnlSidebarHeader = new Panel
-            {
-                Width = 230,
-                Height = 65,
-                BackColor = Color.Transparent,
-                Margin = new Padding(0)
-            };
-
-            lblAppTitle = new Label
-            {
-                Text = "🏪 MART SYSTEM",
-                ForeColor = Color.White,
-                Font = new Font("Segoe UI", 13F, FontStyle.Bold),
-                Location = new Point(15, 18),
-                Size = new Size(160, 30),
-                BackColor = Color.Transparent
-            };
-
-            btnToggleSidebar = new Button
-            {
-                Text = "◀",
-                Size = new Size(25, 25),
-                Location = new Point(190, 20),
-                FlatStyle = FlatStyle.Flat,
-                ForeColor = Color.White,
-                Font = new Font("Segoe UI", 8F),
-                Cursor = Cursors.Hand,
-                BackColor = Color.Transparent
-            };
-            btnToggleSidebar.FlatAppearance.BorderSize = 0;
-            btnToggleSidebar.Click += BtnToggleSidebar_Click;
-
-            pnlSidebarHeader.Controls.AddRange(new Control[] { lblAppTitle, btnToggleSidebar });
-            flowSidebar.Controls.Add(pnlSidebarHeader);
-
-            // Profile info block
-            pnlProfile = new Panel
-            {
-                Width = 230,
-                Height = 85,
-                BackColor = Color.FromArgb(35, 50, 85),
-                Margin = new Padding(0)
-            };
-
-            lblUserGreeting = new Label
-            {
-                Text = "User",
-                ForeColor = Color.White,
-                Font = ThemeHelper.FontBodyBold,
-                Location = new Point(15, 18),
-                Width = 200,
-                AutoEllipsis = true
-            };
-
-            lblUserRole = new Label
-            {
-                Text = "ROLE",
-                ForeColor = ThemeHelper.Success,
-                Font = new Font("Segoe UI", 7.5F, FontStyle.Bold),
-                Location = new Point(15, 42),
-                AutoSize = true
-            };
-            pnlProfile.Controls.AddRange(new Control[] { lblUserGreeting, lblUserRole });
-            flowSidebar.Controls.Add(pnlProfile);
-
-            // Menu Buttons
-            btnProducts = new Guna2Button
-            {
-                Text = "📦  Sản phẩm & Kho",
-                Size = new Size(230, 48),
-                FillColor = ThemeHelper.SidebarBg,
-                ForeColor = ThemeHelper.TextMuted,
-                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
-                TextAlign = HorizontalAlignment.Left,
-                TextOffset = new Point(10, 0),
-                Cursor = Cursors.Hand,
-                BorderRadius = 0,
-                Margin = new Padding(0)
-            };
-            btnProducts.HoverState.FillColor = ThemeHelper.SidebarActiveBg;
-            btnProducts.HoverState.ForeColor = Color.White;
-
-            btnOrders = new Guna2Button
-            {
-                Text = "📝  Đơn đặt giữ hàng",
-                Size = new Size(230, 48),
-                FillColor = ThemeHelper.SidebarBg,
-                ForeColor = ThemeHelper.TextMuted,
-                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
-                TextAlign = HorizontalAlignment.Left,
-                TextOffset = new Point(10, 0),
-                Cursor = Cursors.Hand,
-                BorderRadius = 0,
-                Margin = new Padding(0)
-            };
-            btnOrders.HoverState.FillColor = ThemeHelper.SidebarActiveBg;
-            btnOrders.HoverState.ForeColor = Color.White;
-
-            btnPOS = new Guna2Button
-            {
-                Text = "💳  Thanh toán POS",
-                Size = new Size(230, 48),
-                FillColor = ThemeHelper.SidebarBg,
-                ForeColor = ThemeHelper.TextMuted,
-                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
-                TextAlign = HorizontalAlignment.Left,
-                TextOffset = new Point(10, 0),
-                Cursor = Cursors.Hand,
-                BorderRadius = 0,
-                Margin = new Padding(0)
-            };
-            btnPOS.HoverState.FillColor = ThemeHelper.SidebarActiveBg;
-            btnPOS.HoverState.ForeColor = Color.White;
-
-            btnAccounts = new Guna2Button
-            {
-                Text = "👤  Quản lý tài khoản",
-                Size = new Size(230, 48),
-                FillColor = ThemeHelper.SidebarBg,
-                ForeColor = ThemeHelper.TextMuted,
-                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
-                TextAlign = HorizontalAlignment.Left,
-                TextOffset = new Point(10, 0),
-                Cursor = Cursors.Hand,
-                BorderRadius = 0,
-                Margin = new Padding(0)
-            };
-            btnAccounts.HoverState.FillColor = ThemeHelper.SidebarActiveBg;
-            btnAccounts.HoverState.ForeColor = Color.White;
-
-            btnLogout = new Guna2Button
-            {
-                Text = "🚪  Đăng xuất",
-                Size = new Size(230, 48),
-                FillColor = ThemeHelper.SidebarBg,
-                ForeColor = ThemeHelper.Danger,
-                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
-                TextAlign = HorizontalAlignment.Left,
-                TextOffset = new Point(10, 0),
-                Cursor = Cursors.Hand,
-                BorderRadius = 0,
-                Margin = new Padding(0)
-            };
-            btnLogout.HoverState.FillColor = ThemeHelper.SidebarActiveBg;
-            btnLogout.HoverState.ForeColor = Color.White;
-            btnLogout.Click += BtnLogout_Click;
-
-            flowSidebar.Controls.AddRange(new Control[] { btnProducts, btnOrders, btnPOS, btnAccounts, btnLogout });
-
-            // Active menu left border indicator
-            pnlIndicator = new Panel
-            {
-                Width = 4,
-                Height = 48,
-                BackColor = Color.FromArgb(77, 142, 240),
-                Location = new Point(0, 0),
-                Visible = false
-            };
-            pnlSidebar.Controls.Add(pnlIndicator); // Placed in sidebar over flow list z-order
-
-            // 2. RIGHT LAYOUT (Col 1)
-            rightLayout = new TableLayoutPanel
-            {
-                Dock = DockStyle.Fill,
-                ColumnCount = 1,
-                RowCount = 2,
-                Margin = new Padding(0),
-                Padding = new Padding(0)
-            };
-            rightLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            rightLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));      // Row 0: Topbar
-            rightLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));      // Row 1: Content
-            rootLayout.Controls.Add(rightLayout, 1, 0);
-
-            // Topbar Panel (Row 0 of Right Side)
-            pnlTopbar = new Panel
-            {
-                Dock = DockStyle.Fill,
-                BackColor = Color.White,
-                Padding = new Padding(15, 0, 15, 0),
-                Margin = new Padding(0)
-            };
-            rightLayout.Controls.Add(pnlTopbar, 0, 0);
-
-            lblPageTitle = new Label
-            {
-                Text = "Trang chủ",
-                Font = ThemeHelper.FontH2,
-                ForeColor = ThemeHelper.Primary,
-                Location = new Point(15, 18),
-                AutoSize = true,
-                Anchor = AnchorStyles.Left | AnchorStyles.Top
-            };
-
-            lblAvatar = new Label
-            {
-                Text = "US",
-                Font = ThemeHelper.FontBodyBold,
-                ForeColor = ThemeHelper.Primary,
-                BackColor = ThemeHelper.PrimaryLight,
-                Size = new Size(34, 34),
-                Location = new Point(840, 13),
-                TextAlign = ContentAlignment.MiddleCenter,
-                Anchor = AnchorStyles.Right | AnchorStyles.Top
-            };
-
-            lblBell = new Label
-            {
-                Text = "🔔",
-                Font = new Font("Segoe UI", 12F),
-                ForeColor = ThemeHelper.TextSecondary,
-                Size = new Size(30, 30),
-                Location = new Point(800, 15),
-                Cursor = Cursors.Hand,
-                TextAlign = ContentAlignment.MiddleCenter,
-                Anchor = AnchorStyles.Right | AnchorStyles.Top
-            };
-
-            pnlTopbar.Controls.AddRange(new Control[] { lblPageTitle, lblAvatar, lblBell });
-
-            // Content Panel (Row 1 of Right Side)
-            pnlContent = new Panel
-            {
-                Dock = DockStyle.Fill,
-                BackColor = ThemeHelper.BackgroundApp,
-                Padding = new Padding(0), // Clean Padding to maximize UserControl workspace
-                Margin = new Padding(0)
-            };
-            rightLayout.Controls.Add(pnlContent, 0, 1);
-
-
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
         }
 
         #endregion
 
         // UI Panels & Layouts
-        private TableLayoutPanel rootLayout;
-        private TableLayoutPanel rightLayout;
-        private Panel pnlSidebar;
-        private Panel pnlTopbar;
-        private Panel pnlContent;
-        private Panel pnlProfile;
-        private Panel pnlIndicator; // Moves to active menu button
+        private System.Windows.Forms.TableLayoutPanel rootLayout;
+        private System.Windows.Forms.TableLayoutPanel rightLayout;
+        private System.Windows.Forms.Panel pnlSidebar;
+        private System.Windows.Forms.Panel pnlTopbar;
+        private System.Windows.Forms.Panel pnlContent;
+        private System.Windows.Forms.Panel pnlProfile;
+        private System.Windows.Forms.Panel pnlIndicator;
 
         // Header controls
-        private Label lblAppTitle;
-        private Label lblPageTitle;
-        private Label lblUserGreeting;
-        private Label lblUserRole;
-        private Label lblBell;
-        private Label lblAvatar;
+        private System.Windows.Forms.Label lblAppTitle;
+        private System.Windows.Forms.Label lblPageTitle;
+        private System.Windows.Forms.Label lblUserGreeting;
+        private System.Windows.Forms.Label lblUserRole;
+        private System.Windows.Forms.Label lblBell;
+        private System.Windows.Forms.Label lblAvatar;
 
         // Menu FlowLayout & Buttons
-        private FlowLayoutPanel flowSidebar;
-        private Panel pnlSidebarHeader;
+        private System.Windows.Forms.FlowLayoutPanel flowSidebar;
+        private System.Windows.Forms.Panel pnlSidebarHeader;
         private Guna2Button btnProducts;
         private Guna2Button btnOrders;
         private Guna2Button btnPOS;
         private Guna2Button btnAccounts;
         private Guna2Button btnLogout;
-        private Button btnToggleSidebar;
+        private System.Windows.Forms.Button btnToggleSidebar;
     }
 }
