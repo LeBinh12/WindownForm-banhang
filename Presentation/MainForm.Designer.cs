@@ -258,13 +258,6 @@ namespace QuanLyCuaHangTapHoa.Presentation
                 Padding = new Padding(15, 0, 15, 0),
                 Margin = new Padding(0)
             };
-            pnlTopbar.Paint += (s, e) =>
-            {
-                using (var pen = new Pen(ThemeHelper.BorderLight, 2))
-                {
-                    e.Graphics.DrawLine(pen, 0, pnlTopbar.Height - 1, pnlTopbar.Width, pnlTopbar.Height - 1);
-                }
-            };
             rightLayout.Controls.Add(pnlTopbar, 0, 0);
 
             lblPageTitle = new Label
@@ -277,15 +270,9 @@ namespace QuanLyCuaHangTapHoa.Presentation
                 Anchor = AnchorStyles.Left | AnchorStyles.Top
             };
 
-            string avatarText = "US";
-            if (_currentUser != null && !string.IsNullOrEmpty(_currentUser.TenDangNhap))
-            {
-                avatarText = _currentUser.TenDangNhap.Substring(0, Math.Min(2, _currentUser.TenDangNhap.Length)).ToUpper();
-            }
-
             lblAvatar = new Label
             {
-                Text = avatarText,
+                Text = "US",
                 Font = ThemeHelper.FontBodyBold,
                 ForeColor = ThemeHelper.Primary,
                 BackColor = ThemeHelper.PrimaryLight,
@@ -294,7 +281,6 @@ namespace QuanLyCuaHangTapHoa.Presentation
                 TextAlign = ContentAlignment.MiddleCenter,
                 Anchor = AnchorStyles.Right | AnchorStyles.Top
             };
-            ThemeHelper.RoundControl(lblAvatar, 17);
 
             lblBell = new Label
             {
@@ -309,13 +295,6 @@ namespace QuanLyCuaHangTapHoa.Presentation
             };
 
             pnlTopbar.Controls.AddRange(new Control[] { lblPageTitle, lblAvatar, lblBell });
-
-            // Initialize Avatar and Bell Positions relative to right side
-            pnlTopbar.SizeChanged += (s, e) =>
-            {
-                lblAvatar.Left = pnlTopbar.Width - 60;
-                lblBell.Left = pnlTopbar.Width - 100;
-            };
 
             // Content Panel (Row 1 of Right Side)
             pnlContent = new Panel

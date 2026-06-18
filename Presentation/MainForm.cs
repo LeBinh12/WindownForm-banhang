@@ -24,6 +24,7 @@ namespace QuanLyCuaHangTapHoa.Presentation
         {
             InitializeComponent();
             SetupEvents();
+            SetupData();
         }
 
         public MainForm(
@@ -41,6 +42,7 @@ namespace QuanLyCuaHangTapHoa.Presentation
 
             InitializeComponent();
             SetupEvents();
+            SetupData();
             UpdateUserProfileDisplay();
             ConfigureMenuAccess();
             ShowDefaultTab();
@@ -52,6 +54,33 @@ namespace QuanLyCuaHangTapHoa.Presentation
             btnOrders.Click += (s, e) => SwitchTab(new ucDonHang(_orderUseCase, _productUseCase, _currentUser), btnOrders, "Yêu cầu Đặt giữ hàng");
             btnPOS.Click += (s, e) => SwitchTab(new ucThanhToan(_invoiceUseCase, _orderUseCase, _productUseCase, _currentUser), btnPOS, "Điểm bán lẻ POS & Đổi trả");
             btnAccounts.Click += (s, e) => SwitchTab(new ucTaiKhoan(_accountUseCase, _currentUser), btnAccounts, "Quản trị Tài khoản");
+
+            pnlTopbar.Paint += (s, e) =>
+            {
+                using (var pen = new Pen(ThemeHelper.BorderLight, 2))
+                {
+                    e.Graphics.DrawLine(pen, 0, pnlTopbar.Height - 1, pnlTopbar.Width, pnlTopbar.Height - 1);
+                }
+            };
+
+            pnlTopbar.SizeChanged += (s, e) =>
+            {
+                lblAvatar.Left = pnlTopbar.Width - 60;
+                lblBell.Left = pnlTopbar.Width - 100;
+            };
+        }
+
+        private void SetupData()
+        {
+            if (_currentUser != null && !string.IsNullOrEmpty(_currentUser.TenDangNhap))
+            {
+                lblAvatar.Text = _currentUser.TenDangNhap.Substring(0, Math.Min(2, _currentUser.TenDangNhap.Length)).ToUpper();
+            }
+            else
+            {
+                lblAvatar.Text = "US";
+            }
+            ThemeHelper.RoundControl(lblAvatar, 17);
         }
 
         private Guna2Button CreateMenuButton(string text)
