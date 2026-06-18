@@ -105,7 +105,6 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
                 AutoGenerateColumns = false
             };
             ThemeHelper.StyleFlatDataGrid(dgvCart);
-            dgvCart.DataError += (s, e) => { e.ThrowException = false; };
             pnlRight.Controls.Add(dgvCart);
 
             dgvCart.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Sản phẩm", DataPropertyName = "TenSP", Width = 150, AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill });
@@ -146,7 +145,6 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
                 ForeColor = ThemeHelper.TextSecondary,
                 Cursor = Cursors.Hand
             };
-            btnCancel.Click += (s, e) => this.Close();
             pnlMain.Controls.Add(btnCancel);
 
             btnSubmit = new Guna2Button

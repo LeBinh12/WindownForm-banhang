@@ -21,6 +21,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
         public FormCustomerCart()
         {
             InitializeComponent();
+            SetupEvents();
         }
 
         public FormCustomerCart(IProductUseCase productUseCase, IOrderUseCase orderUseCase, TaiKhoan currentUser)
@@ -30,7 +31,14 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             _currentUser = currentUser;
 
             InitializeComponent();
+            SetupEvents();
             LoadProducts();
+        }
+
+        private void SetupEvents()
+        {
+            dgvCart.DataError += (s, e) => { e.ThrowException = false; };
+            btnCancel.Click += (s, e) => this.Close();
         }
 
         private void LoadProducts()

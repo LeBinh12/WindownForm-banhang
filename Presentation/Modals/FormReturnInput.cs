@@ -17,6 +17,8 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
         public FormReturnInput()
         {
             InitializeComponent();
+            SetupData();
+            SetupEvents();
         }
 
         public FormReturnInput(string productName, int maxQty)
@@ -25,6 +27,21 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             _maxQty = maxQty;
 
             InitializeComponent();
+            SetupData();
+            SetupEvents();
+        }
+
+        private void SetupData()
+        {
+            lblProduct.Text = _productName ?? "Sản phẩm";
+            int max = _maxQty > 0 ? _maxQty : 1;
+            lblPurchased.Text = $"{max} sản phẩm";
+            numQty.Maximum = max;
+        }
+
+        private void SetupEvents()
+        {
+            btnCancel.Click += (s, e) => this.Close();
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

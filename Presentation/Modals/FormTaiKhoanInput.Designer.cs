@@ -47,9 +47,9 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             };
             this.Controls.Add(pnlMain);
 
-            Label lblTitle = new Label
+            lblTitle = new Label
             {
-                Text = _isEdit ? "CẬP NHẬT TÀI KHOẢN" : "TẠO TÀI KHOẢN MỚI",
+                Text = "TÀI KHOẢN",
                 Font = ThemeHelper.FontSubheading,
                 ForeColor = ThemeHelper.Primary,
                 AutoSize = true,
@@ -69,21 +69,28 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             tblFields.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150));
             tblFields.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
 
-            for (int i = 0; i < 11; i++)
-            {
-                tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 9.09F));
-            }
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 9.09F));
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 9.09F));
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 9.09F));
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 9.09F));
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 9.09F));
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 9.09F));
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 9.09F));
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 9.09F));
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 9.09F));
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 9.09F));
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 9.09F));
             pnlMain.Controls.Add(tblFields);
 
             // Row 0: MaNguoiDung
             tblFields.Controls.Add(CreateLabel("Mã người dùng *"), 0, 0);
-            txtMaNguoiDung = CreateTextBox(User?.MaNguoiDung, _isEdit);
+            txtMaNguoiDung = CreateTextBox("", false);
             txtMaNguoiDung.PlaceholderText = "Ví dụ: admin, nv01, kh01...";
             tblFields.Controls.Add(txtMaNguoiDung, 1, 0);
 
             // Row 1: TenDangNhap
             tblFields.Controls.Add(CreateLabel("Tên đăng nhập *"), 0, 1);
-            txtTenDangNhap = CreateTextBox(Account.TenDangNhap, _isEdit);
+            txtTenDangNhap = CreateTextBox("", false);
             txtTenDangNhap.PlaceholderText = "Tên đăng nhập duy nhất...";
             tblFields.Controls.Add(txtTenDangNhap, 1, 1);
 
@@ -91,23 +98,18 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             tblFields.Controls.Add(CreateLabel("Vai trò"), 0, 2);
             cbRole = new Guna2ComboBox
             {
-                Dock = DockStyle.Fill,
-                Enabled = !_isEdit // Lock role on edit to prevent identity shift
+                Dock = DockStyle.Fill
             };
             ThemeHelper.StyleComboBox(cbRole);
-            cbRole.DataSource = EnumTranslator.TranslateVaiTro(false);
-            cbRole.DisplayMember = "Text";
-            cbRole.ValueMember = "Value";
-            cbRole.SelectedValue = Role ?? "NhanVien";
-            cbRole.SelectedIndexChanged += CbRole_SelectedIndexChanged;
             tblFields.Controls.Add(cbRole, 1, 2);
 
             // Row 3: MatKhau
-            tblFields.Controls.Add(CreateLabel(_isEdit ? "Mật khẩu mới (bỏ trống để giữ)" : "Mật khẩu *"), 0, 3);
+            lblPasswordLabel = CreateLabel("Mật khẩu *");
+            tblFields.Controls.Add(lblPasswordLabel, 0, 3);
             txtMatKhau = CreateTextBox("");
             txtMatKhau.PasswordChar = '●';
             txtMatKhau.UseSystemPasswordChar = true;
-            txtMatKhau.PlaceholderText = _isEdit ? "Bỏ trống nếu không đổi..." : "Nhập mật khẩu...";
+            txtMatKhau.PlaceholderText = "Nhập mật khẩu...";
             
             Button btnShowHide = new Button
             {
@@ -132,42 +134,37 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
 
             // Row 4: HoTen
             tblFields.Controls.Add(CreateLabel("Họ và tên *"), 0, 4);
-            txtHoTen = CreateTextBox(User?.HoTen);
+            txtHoTen = CreateTextBox("");
             txtHoTen.PlaceholderText = "Nhập đầy đủ họ tên...";
             tblFields.Controls.Add(txtHoTen, 1, 4);
 
             // Row 5: Email
             tblFields.Controls.Add(CreateLabel("Email *"), 0, 5);
-            txtEmail = CreateTextBox(User?.Email);
+            txtEmail = CreateTextBox("");
             txtEmail.PlaceholderText = "Ví dụ: user@gmail.com";
             tblFields.Controls.Add(txtEmail, 1, 5);
 
             // Row 6: SoDienThoai
             tblFields.Controls.Add(CreateLabel("Số điện thoại *"), 0, 6);
-            txtSoDienThoai = CreateTextBox(User?.SoDienThoai);
+            txtSoDienThoai = CreateTextBox("");
             txtSoDienThoai.PlaceholderText = "Ví dụ: 0912345678";
             tblFields.Controls.Add(txtSoDienThoai, 1, 6);
 
             // Row 7: DiaChi
             tblFields.Controls.Add(CreateLabel("Địa chỉ"), 0, 7);
-            txtDiaChi = CreateTextBox(User?.DiaChi);
+            txtDiaChi = CreateTextBox("");
             txtDiaChi.PlaceholderText = "Số nhà, tên đường...";
             tblFields.Controls.Add(txtDiaChi, 1, 7);
 
             // Row 8: ChucVu
             tblFields.Controls.Add(CreateLabel("Chức vụ (Admin/Staff)"), 0, 8);
-            string initialChucVu = "";
-            if (User is Admin ad) initialChucVu = ad.ChucVu;
-            else if (User is NhanVien nv) initialChucVu = nv.ChucVu;
-            txtChucVu = CreateTextBox(initialChucVu);
+            txtChucVu = CreateTextBox("");
             txtChucVu.PlaceholderText = "Ví dụ: Thu ngân, Quản kho...";
             tblFields.Controls.Add(txtChucVu, 1, 8);
 
             // Row 9: MaKhachHang
             tblFields.Controls.Add(CreateLabel("Mã khách hàng (KH)"), 0, 9);
-            string initialKH = "";
-            if (User is KhachHang kh) initialKH = kh.MaKhachHang;
-            txtMaKhachHang = CreateTextBox(initialKH);
+            txtMaKhachHang = CreateTextBox("");
             txtMaKhachHang.PlaceholderText = "Ví dụ: KH1023";
             tblFields.Controls.Add(txtMaKhachHang, 1, 9);
 
@@ -178,15 +175,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
                 Dock = DockStyle.Fill,
                 Margin = new Padding(0)
             };
-            ThemeHelper.StyleComboBox(cbTrangThai);
-            cbTrangThai.DataSource = EnumTranslator.TranslateTrangThaiTaiKhoan(false);
-            cbTrangThai.DisplayMember = "Text";
-            cbTrangThai.ValueMember = "Value";
-            cbTrangThai.SelectedValue = _isEdit ? Account.TrangThaiTaiKhoan : TrangThaiTaiKhoan.HoatDong;
             tblFields.Controls.Add(cbTrangThai, 1, 10);
-
-            // Apply lock triggers initial
-            CbRole_SelectedIndexChanged(null, null);
 
             // Cancel and Save buttons
             btnCancel = new Guna2Button
@@ -201,7 +190,6 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
                 ForeColor = ThemeHelper.TextSecondary,
                 Cursor = Cursors.Hand
             };
-            btnCancel.Click += (s, e) => this.Close();
             pnlMain.Controls.Add(btnCancel);
 
             btnSave = new Guna2Button
@@ -264,5 +252,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
 
         private Guna2Button btnSave;
         private Guna2Button btnCancel;
+        private Label lblTitle;
+        private Label lblPasswordLabel;
     }
 }

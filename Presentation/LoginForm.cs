@@ -21,6 +21,7 @@ namespace QuanLyCuaHangTapHoa.Presentation
         public LoginForm()
         {
             InitializeComponent();
+            SetupEvents();
         }
 
         public LoginForm(
@@ -35,6 +36,73 @@ namespace QuanLyCuaHangTapHoa.Presentation
             _invoiceUseCase = invoiceUseCase;
 
             InitializeComponent();
+            SetupEvents();
+        }
+
+        private void SetupEvents()
+        {
+            // Apply Theme & Round Corners
+            ThemeHelper.StyleForm(this);
+            ThemeHelper.RoundControl(this, 16);
+
+            // Drag Handlers
+            pnlLeft.MouseDown += TitleBar_MouseDown;
+            pnlLeft.MouseMove += TitleBar_MouseMove;
+            pnlLeft.MouseUp += TitleBar_MouseUp;
+
+            pnlRight.MouseDown += TitleBar_MouseDown;
+            pnlRight.MouseMove += TitleBar_MouseMove;
+            pnlRight.MouseUp += TitleBar_MouseUp;
+
+            // Custom Paint on Left Panel
+            pnlLeft.Paint += (s, e) =>
+            {
+                using (var brush = new SolidBrush(Color.FromArgb(15, 255, 255, 255)))
+                {
+                    e.Graphics.FillEllipse(brush, -50, -50, 200, 200);
+                    e.Graphics.FillEllipse(brush, 350, 480, 180, 180);
+                    e.Graphics.FillEllipse(brush, 320, 50, 80, 80);
+                }
+            };
+
+            // Title Bar Buttons
+            btnClose.MouseEnter += (s, e) => btnClose.ForeColor = ThemeHelper.Danger;
+            btnClose.MouseLeave += (s, e) => btnClose.ForeColor = ThemeHelper.TextSecondary;
+            btnClose.Click += (s, e) => System.Windows.Forms.Application.Exit();
+
+            btnMinimize.MouseEnter += (s, e) => btnMinimize.BackColor = Color.FromArgb(240, 240, 240);
+            btnMinimize.MouseLeave += (s, e) => btnMinimize.BackColor = Color.Transparent;
+            btnMinimize.Click += (s, e) => this.WindowState = FormWindowState.Minimized;
+
+            // Login Button
+            btnLogin.Click += BtnLogin_Click;
+
+            // Forgot Password
+            lnkForgotPassword.LinkClicked += (s, e) => MessageBox.Show(
+                "Vui lòng liên hệ Quản Trị Viên hệ thống để cấp lại mật khẩu.", 
+                "Quên mật khẩu", 
+                MessageBoxButtons.OK, 
+                MessageBoxIcon.Information);
+
+            // Password Show/Hide Button
+            Button btnShowHide = new Button
+            {
+                Text = "👁",
+                Size = new Size(30, 26),
+                Dock = DockStyle.Right,
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.White,
+                Cursor = Cursors.Hand
+            };
+            btnShowHide.FlatAppearance.BorderSize = 0;
+            btnShowHide.Click += (s, e) =>
+            {
+                txtPassword.UseSystemPasswordChar = !txtPassword.UseSystemPasswordChar;
+                txtPassword.PasswordChar = txtPassword.UseSystemPasswordChar ? '●' : '\0';
+                btnShowHide.Text = txtPassword.UseSystemPasswordChar ? "👁" : "🙈";
+            };
+            txtPassword.Controls.Add(btnShowHide);
+            btnShowHide.BringToFront();
         }
 
         // Mouse Drag handlers for Form Movement

@@ -48,9 +48,9 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             this.Controls.Add(pnlMain);
 
             // Title
-            Label lblTitle = new Label
+            lblTitle = new Label
             {
-                Text = _isEdit ? "CẬP NHẬT SẢN PHẨM" : "THÊM SẢN PHẨM MỚI",
+                Text = "SẢN PHẨM",
                 Font = ThemeHelper.FontSubheading,
                 ForeColor = ThemeHelper.Primary,
                 AutoSize = true,
@@ -70,43 +70,45 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             tblFields.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 140));
             tblFields.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
 
-            for (int i = 0; i < 6; i++)
-            {
-                tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6F));
-            }
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6F));
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6F));
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6F));
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6F));
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6F));
+            tblFields.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6F));
             pnlMain.Controls.Add(tblFields);
 
             // Row 0: MaSP
             var lblMaSP = CreateLabel("Mã sản phẩm *");
-            txtMaSP = CreateTextBox(Product.MaSP, _isEdit); // Read-only if edit
+            txtMaSP = CreateTextBox("", false); // Read-only if edit
             txtMaSP.PlaceholderText = "Mã định danh duy nhất...";
             tblFields.Controls.Add(lblMaSP, 0, 0);
             tblFields.Controls.Add(txtMaSP, 1, 0);
 
             // Row 1: TenSP
             var lblTenSP = CreateLabel("Tên sản phẩm *");
-            txtTenSP = CreateTextBox(Product.TenSP);
+            txtTenSP = CreateTextBox("");
             txtTenSP.PlaceholderText = "Nhập tên sản phẩm...";
             tblFields.Controls.Add(lblTenSP, 0, 1);
             tblFields.Controls.Add(txtTenSP, 1, 1);
 
             // Row 2: DanhMuc
             var lblDanhMuc = CreateLabel("Danh mục *");
-            txtDanhMuc = CreateTextBox(Product.DanhMuc);
+            txtDanhMuc = CreateTextBox("");
             txtDanhMuc.PlaceholderText = "Ví dụ: Gia vị, Đồ uống...";
             tblFields.Controls.Add(lblDanhMuc, 0, 2);
             tblFields.Controls.Add(txtDanhMuc, 1, 2);
 
             // Row 3: DonGia
             var lblDonGia = CreateLabel("Đơn giá (VND) *");
-            txtDonGia = CreateTextBox(_isEdit ? Product.DonGia.ToString("0") : "");
+            txtDonGia = CreateTextBox("");
             txtDonGia.PlaceholderText = "Ví dụ: 15000";
             tblFields.Controls.Add(lblDonGia, 0, 3);
             tblFields.Controls.Add(txtDonGia, 1, 3);
 
             // Row 4: SoLuongTon
             var lblSoLuongTon = CreateLabel("Số lượng tồn *");
-            txtSoLuongTon = CreateTextBox(_isEdit ? Product.SoLuongTon.ToString() : "");
+            txtSoLuongTon = CreateTextBox("");
             txtSoLuongTon.PlaceholderText = "Ví dụ: 100";
             tblFields.Controls.Add(lblSoLuongTon, 0, 4);
             tblFields.Controls.Add(txtSoLuongTon, 1, 4);
@@ -119,10 +121,6 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
                 Margin = new Padding(0)
             };
             ThemeHelper.StyleComboBox(cbTrangThai);
-            cbTrangThai.DataSource = EnumTranslator.TranslateTrangThaiSanPham(false);
-            cbTrangThai.DisplayMember = "Text";
-            cbTrangThai.ValueMember = "Value";
-            cbTrangThai.SelectedValue = Product.TrangThaiSanPham;
             tblFields.Controls.Add(lblTrangThai, 0, 5);
             tblFields.Controls.Add(cbTrangThai, 1, 5);
 
@@ -147,7 +145,6 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
                 ForeColor = ThemeHelper.TextSecondary,
                 Cursor = Cursors.Hand
             };
-            btnCancel.Click += (s, e) => this.Close();
             pnlButtons.Controls.Add(btnCancel);
 
             btnSave = new Guna2Button
@@ -206,5 +203,6 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
 
         private Guna2Button btnSave;
         private Guna2Button btnCancel;
+        private Label lblTitle;
     }
 }

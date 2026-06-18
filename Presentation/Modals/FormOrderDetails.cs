@@ -15,13 +15,24 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
         public FormOrderDetails()
         {
             InitializeComponent();
+            SetupEvents();
         }
 
         public FormOrderDetails(DonDatHang order)
         {
             _order = order;
             InitializeComponent();
+            SetupEvents();
             LoadDetails();
+        }
+
+        private void SetupEvents()
+        {
+            btnClose.Click += (s, e) => this.Close();
+            pnlFooter.SizeChanged += (s, e) =>
+            {
+                btnClose.Left = pnlFooter.Width - btnClose.Width;
+            };
         }
 
         private void LoadDetails()
@@ -29,6 +40,20 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             if (_order == null) return;
             try
             {
+                lblTitle.Text = $"CHI TIẾT ĐƠN HÀNG: {_order.MaDon}";
+                lblValNgayDat.Text = _order.NgayDat.ToString("dd/MM/yyyy HH:mm");
+                lblValTrangThai.Text = _order.TrangThaiDonHang switch
+                {
+                    TrangThaiDonHang.ChoDuyet    => "🟡 Chờ duyệt",
+                    TrangThaiDonHang.DaDuyet     => "🟢 Đã duyệt",
+                    TrangThaiDonHang.DaThanhToan => "🔵 Đã thanh toán",
+                    TrangThaiDonHang.TuChoi      => "🔴 Từ chối",
+                    TrangThaiDonHang.DaHuy       => "⚫ Đã hủy",
+                    _                            => _order.TrangThaiDonHang.ToString()
+                };
+                lblValKhachHang.Text = _order.KhachHang?.HoTen ?? "—";
+                lblValNgayDuyet.Text = _order.NgayDuyet.HasValue ? _order.NgayDuyet.Value.ToString("dd/MM/yyyy HH:mm") : "Chưa duyệt";
+
                 var displayList = _order.ChiTietDonHangs.Select(ct => new
                 {
                     TenSanPham = ct.SanPham?.TenSP ?? ct.MaSP,

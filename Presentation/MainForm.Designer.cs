@@ -122,7 +122,7 @@ namespace QuanLyCuaHangTapHoa.Presentation
 
             lblUserGreeting = new Label
             {
-                Text = _currentUser != null ? _currentUser.NguoiDung.HoTen : "User",
+                Text = "User",
                 ForeColor = Color.White,
                 Font = ThemeHelper.FontBodyBold,
                 Location = new Point(15, 18),
@@ -130,16 +130,9 @@ namespace QuanLyCuaHangTapHoa.Presentation
                 AutoEllipsis = true
             };
 
-            string roleText = "Khách Hàng";
-            if (_currentUser != null)
-            {
-                if (_currentUser.NguoiDung is Admin) roleText = "Quản trị viên";
-                else if (_currentUser.NguoiDung is NhanVien) roleText = "Nhân viên";
-            }
-
             lblUserRole = new Label
             {
-                Text = roleText.ToUpper(),
+                Text = "ROLE",
                 ForeColor = ThemeHelper.Success,
                 Font = new Font("Segoe UI", 7.5F, FontStyle.Bold),
                 Location = new Point(15, 42),
@@ -269,7 +262,7 @@ namespace QuanLyCuaHangTapHoa.Presentation
             };
             rightLayout.Controls.Add(pnlContent, 0, 1);
 
-            ConfigureMenuAccess();
+
         }
 
         #endregion

@@ -74,14 +74,11 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
 
             pnlMain.Controls.Add(tblFields);
 
-            string name = _productName ?? "Sản phẩm";
-            int max = _maxQty > 0 ? _maxQty : 1;
-
             // Row 0: Product Info
             tblFields.Controls.Add(CreateLabel("Sản phẩm:"), 0, 0);
             lblProduct = new Label
             {
-                Text = name,
+                Text = "Sản phẩm",
                 Font = ThemeHelper.FontBodyBold,
                 ForeColor = ThemeHelper.Text,
                 Dock = DockStyle.Fill,
@@ -91,9 +88,9 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
 
             // Row 1: Max Qty
             tblFields.Controls.Add(CreateLabel("Hóa đơn đã mua:"), 0, 1);
-            var lblPurchased = new Label
+            lblPurchased = new Label
             {
-                Text = $"{max} sản phẩm",
+                Text = "0 sản phẩm",
                 Font = ThemeHelper.FontBody,
                 ForeColor = ThemeHelper.TextSecondary,
                 Dock = DockStyle.Fill,
@@ -107,7 +104,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             {
                 Dock = DockStyle.Fill,
                 Minimum = 1,
-                Maximum = max,
+                Maximum = 1,
                 Value = 1,
                 Font = ThemeHelper.FontBody
             };
@@ -140,7 +137,6 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
                 ForeColor = ThemeHelper.TextSecondary,
                 Cursor = Cursors.Hand
             };
-            btnCancel.Click += (s, e) => this.Close();
             pnlMain.Controls.Add(btnCancel);
 
             btnSave = new Guna2Button
@@ -175,6 +171,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
         #endregion
 
         private Label lblProduct;
+        private Label lblPurchased;
         private NumericUpDown numQty;
         private Guna2TextBox txtReason;
         private Guna2Button btnSave;

@@ -36,8 +36,6 @@ namespace QuanLyCuaHangTapHoa.Presentation
             this.Size = new Size(1000, 620);
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.CenterScreen;
-            ThemeHelper.StyleForm(this);
-            ThemeHelper.RoundControl(this, 16); // Rounded corners for form
 
             // MAIN CONTAINER TABLE LAYOUT
             TableLayoutPanel mainLayout = new TableLayoutPanel
@@ -60,9 +58,7 @@ namespace QuanLyCuaHangTapHoa.Presentation
                 GradientMode = LinearGradientMode.BackwardDiagonal,
                 Padding = new Padding(30)
             };
-            pnlLeft.MouseDown += TitleBar_MouseDown;
-            pnlLeft.MouseMove += TitleBar_MouseMove;
-            pnlLeft.MouseUp += TitleBar_MouseUp;
+
 
             lblTitleLeft = new Label
             {
@@ -95,16 +91,7 @@ namespace QuanLyCuaHangTapHoa.Presentation
                 BackColor = Color.Transparent
             };
 
-            // Floating decorative graphic shapes using Paint event
-            pnlLeft.Paint += (s, e) =>
-            {
-                using (var brush = new SolidBrush(Color.FromArgb(15, 255, 255, 255)))
-                {
-                    e.Graphics.FillEllipse(brush, -50, -50, 200, 200);
-                    e.Graphics.FillEllipse(brush, 350, 480, 180, 180);
-                    e.Graphics.FillEllipse(brush, 320, 50, 80, 80);
-                }
-            };
+
 
             pnlLeft.Controls.AddRange(new Control[] { lblTitleLeft, lblSlogan, lblCartIcon });
             mainLayout.Controls.Add(pnlLeft, 0, 0);
@@ -116,9 +103,7 @@ namespace QuanLyCuaHangTapHoa.Presentation
                 BackColor = Color.White,
                 Padding = new Padding(40)
             };
-            pnlRight.MouseDown += TitleBar_MouseDown;
-            pnlRight.MouseMove += TitleBar_MouseMove;
-            pnlRight.MouseUp += TitleBar_MouseUp;
+
 
             // Frameless Control Box (Top-Right)
             btnClose = new Button
@@ -133,9 +118,6 @@ namespace QuanLyCuaHangTapHoa.Presentation
                 BackColor = Color.Transparent
             };
             btnClose.FlatAppearance.BorderSize = 0;
-            btnClose.MouseEnter += (s, e) => btnClose.ForeColor = ThemeHelper.Danger;
-            btnClose.MouseLeave += (s, e) => btnClose.ForeColor = ThemeHelper.TextSecondary;
-            btnClose.Click += (s, e) => System.Windows.Forms.Application.Exit();
 
             btnMinimize = new Button
             {
@@ -149,9 +131,6 @@ namespace QuanLyCuaHangTapHoa.Presentation
                 BackColor = Color.Transparent
             };
             btnMinimize.FlatAppearance.BorderSize = 0;
-            btnMinimize.MouseEnter += (s, e) => btnMinimize.BackColor = Color.FromArgb(240, 240, 240);
-            btnMinimize.MouseLeave += (s, e) => btnMinimize.BackColor = Color.Transparent;
-            btnMinimize.Click += (s, e) => this.WindowState = FormWindowState.Minimized;
 
             pnlRight.Controls.AddRange(new Control[] { btnClose, btnMinimize });
 
@@ -208,24 +187,7 @@ namespace QuanLyCuaHangTapHoa.Presentation
                 UseSystemPasswordChar = true,
                 Text = "admin123"
             };
-            Button btnShowHide = new Button
-            {
-                Text = "👁",
-                Size = new Size(30, 26),
-                Dock = DockStyle.Right,
-                FlatStyle = FlatStyle.Flat,
-                BackColor = Color.White,
-                Cursor = Cursors.Hand
-            };
-            btnShowHide.FlatAppearance.BorderSize = 0;
-            btnShowHide.Click += (s, e) =>
-            {
-                txtPassword.UseSystemPasswordChar = !txtPassword.UseSystemPasswordChar;
-                txtPassword.PasswordChar = txtPassword.UseSystemPasswordChar ? '●' : '\0';
-                btnShowHide.Text = txtPassword.UseSystemPasswordChar ? "👁" : "🙈";
-            };
-            txtPassword.Controls.Add(btnShowHide);
-            btnShowHide.BringToFront();
+
 
             chkRemember = new CheckBox
             {
@@ -246,7 +208,7 @@ namespace QuanLyCuaHangTapHoa.Presentation
                 AutoSize = true,
                 LinkBehavior = LinkBehavior.HoverUnderline
             };
-            lnkForgotPassword.LinkClicked += (s, e) => MessageBox.Show("Vui lòng liên hệ Quản Trị Viên hệ thống để cấp lại mật khẩu.", "Quên mật khẩu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
 
             btnLogin = new Guna2Button
             {
@@ -260,7 +222,7 @@ namespace QuanLyCuaHangTapHoa.Presentation
                 ForeColor = Color.White,
                 Cursor = Cursors.Hand
             };
-            btnLogin.Click += BtnLogin_Click;
+
 
             lblError = new Label
             {

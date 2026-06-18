@@ -21,6 +21,8 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             Account = new TaiKhoan();
             User = new NhanVien(); // Default dummy user
             InitializeComponent();
+            SetupData();
+            SetupEvents();
         }
 
         public FormTaiKhoanInput(string currentUserId, TaiKhoan existingAccount = null)
@@ -63,6 +65,56 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             }
 
             InitializeComponent();
+            SetupData();
+            SetupEvents();
+        }
+
+        private void SetupData()
+        {
+            lblTitle.Text = _isEdit ? "CẬP NHẬT TÀI KHOẢN" : "TẠO TÀI KHOẢN MỚI";
+            lblPasswordLabel.Text = _isEdit ? "Mật khẩu mới (bỏ trống để giữ)" : "Mật khẩu *";
+            txtMatKhau.PlaceholderText = _isEdit ? "Bỏ trống nếu không đổi..." : "Nhập mật khẩu...";
+
+            txtMaNguoiDung.Text = User?.MaNguoiDung ?? "";
+            txtMaNguoiDung.ReadOnly = _isEdit;
+
+            txtTenDangNhap.Text = Account.TenDangNhap ?? "";
+            txtTenDangNhap.ReadOnly = _isEdit;
+
+            cbRole.Enabled = !_isEdit;
+            cbRole.DataSource = EnumTranslator.TranslateVaiTro(false);
+            cbRole.DisplayMember = "Text";
+            cbRole.ValueMember = "Value";
+            cbRole.SelectedValue = Role ?? "NhanVien";
+
+            txtHoTen.Text = User?.HoTen ?? "";
+            txtEmail.Text = User?.Email ?? "";
+            txtSoDienThoai.Text = User?.SoDienThoai ?? "";
+            txtDiaChi.Text = User?.DiaChi ?? "";
+
+            string initialChucVu = "";
+            if (User is Admin ad) initialChucVu = ad.ChucVu;
+            else if (User is NhanVien nv) initialChucVu = nv.ChucVu;
+            txtChucVu.Text = initialChucVu;
+
+            string initialKH = "";
+            if (User is KhachHang kh) initialKH = kh.MaKhachHang;
+            txtMaKhachHang.Text = initialKH;
+
+            ThemeHelper.StyleComboBox(cbTrangThai);
+            cbTrangThai.DataSource = EnumTranslator.TranslateTrangThaiTaiKhoan(false);
+            cbTrangThai.DisplayMember = "Text";
+            cbTrangThai.ValueMember = "Value";
+            cbTrangThai.SelectedValue = _isEdit ? Account.TrangThaiTaiKhoan : TrangThaiTaiKhoan.HoatDong;
+
+            // Apply lock triggers initial
+            CbRole_SelectedIndexChanged(null, null);
+        }
+
+        private void SetupEvents()
+        {
+            cbRole.SelectedIndexChanged += CbRole_SelectedIndexChanged;
+            btnCancel.Click += (s, e) => this.Close();
         }
 
         private void CbRole_SelectedIndexChanged(object sender, EventArgs e)

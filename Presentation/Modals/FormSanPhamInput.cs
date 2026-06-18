@@ -16,6 +16,8 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
         {
             Product = new SanPham();
             InitializeComponent();
+            SetupData();
+            SetupEvents();
         }
 
         public FormSanPhamInput(SanPham existingProduct = null)
@@ -39,6 +41,31 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             }
 
             InitializeComponent();
+            SetupData();
+            SetupEvents();
+        }
+
+        private void SetupData()
+        {
+            lblTitle.Text = _isEdit ? "CẬP NHẬT SẢN PHẨM" : "THÊM SẢN PHẨM MỚI";
+
+            txtMaSP.Text = Product.MaSP ?? "";
+            txtMaSP.ReadOnly = _isEdit;
+
+            txtTenSP.Text = Product.TenSP ?? "";
+            txtDanhMuc.Text = Product.DanhMuc ?? "";
+            txtDonGia.Text = _isEdit ? Product.DonGia.ToString("0") : "";
+            txtSoLuongTon.Text = _isEdit ? Product.SoLuongTon.ToString() : "";
+
+            cbTrangThai.DataSource = EnumTranslator.TranslateTrangThaiSanPham(false);
+            cbTrangThai.DisplayMember = "Text";
+            cbTrangThai.ValueMember = "Value";
+            cbTrangThai.SelectedValue = Product.TrangThaiSanPham;
+        }
+
+        private void SetupEvents()
+        {
+            btnCancel.Click += (s, e) => this.Close();
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

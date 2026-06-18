@@ -85,33 +85,9 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             tblInfo.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,  60F));
             cardInfo.Controls.Add(tblInfo);
 
-            string titleText = "CHI TIẾT ĐƠN HÀNG";
-            string trangThai = "🟡 Chờ duyệt";
-            string ngayDat = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
-            string khachHang = "—";
-            string ngayDuyet = "Chưa duyệt";
-
-            if (_order != null)
+            lblTitle = new Label
             {
-                titleText = $"CHI TIẾT ĐƠN HÀNG: {_order.MaDon}";
-                trangThai = _order.TrangThaiDonHang switch
-                {
-                    TrangThaiDonHang.ChoDuyet    => "🟡 Chờ duyệt",
-                    TrangThaiDonHang.DaDuyet     => "🟢 Đã duyệt",
-                    TrangThaiDonHang.DaThanhToan => "🔵 Đã thanh toán",
-                    TrangThaiDonHang.TuChoi      => "🔴 Từ chối",
-                    TrangThaiDonHang.DaHuy       => "⚫ Đã hủy",
-                    _                            => _order.TrangThaiDonHang.ToString()
-                };
-                ngayDat = _order.NgayDat.ToString("dd/MM/yyyy HH:mm");
-                khachHang = _order.KhachHang?.HoTen ?? "—";
-                ngayDuyet = _order.NgayDuyet.HasValue ? _order.NgayDuyet.Value.ToString("dd/MM/yyyy HH:mm") : "Chưa duyệt";
-            }
-
-            // Title spanning all 4 columns
-            var lblTitle = new Label
-            {
-                Text      = titleText,
+                Text      = "CHI TIẾT ĐƠN HÀNG",
                 Font      = ThemeHelper.FontSubheading,
                 ForeColor = ThemeHelper.Primary,
                 AutoSize  = true,
@@ -120,10 +96,13 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             tblInfo.Controls.Add(lblTitle, 0, 0);
             tblInfo.SetColumnSpan(lblTitle, 4);
 
-            // Row 1: Mã đơn | value | Trạng thái | value
-            AddInfoRow(tblInfo, 1, "Ngày đặt:", ngayDat, "Trạng thái:", trangThai);
-            // Row 2: Khách hàng | value | Ngày duyệt | value
-            AddInfoRow(tblInfo, 2, "Khách hàng:", khachHang, "Ngày duyệt:", ngayDuyet);
+            lblValNgayDat = new Label { Font = ThemeHelper.FontBody, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
+            lblValTrangThai = new Label { Font = ThemeHelper.FontBodyBold, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
+            lblValKhachHang = new Label { Font = ThemeHelper.FontBody, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
+            lblValNgayDuyet = new Label { Font = ThemeHelper.FontBodyBold, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
+
+            AddInfoRow(tblInfo, 1, "Ngày đặt:", lblValNgayDat, "Trạng thái:", lblValTrangThai);
+            AddInfoRow(tblInfo, 2, "Khách hàng:", lblValKhachHang, "Ngày duyệt:", lblValNgayDuyet);
 
             // ── ROW 1: Section label ──────────────────────────────────
             var lblSection = new Label
@@ -200,7 +179,7 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
             dgvDetails.Columns.Add(colTotal);
 
             // ── ROW 3: Footer Panel ───────────────────────────────────
-            var pnlFooter = new Panel
+            pnlFooter = new Panel
             {
                 Dock    = DockStyle.Fill,
                 Height  = 46,
@@ -229,27 +208,18 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
                 ForeColor    = Color.White,
                 Cursor       = Cursors.Hand
             };
-            btnClose.Click += (s, e) => this.Close();
             pnlFooter.Controls.Add(btnClose);
-
-            // Make sure the close button aligns correctly on resize
-            pnlFooter.SizeChanged += (s, e) =>
-            {
-                btnClose.Left = pnlFooter.Width - btnClose.Width;
-            };
         }
 
-        private void AddInfoRow(TableLayoutPanel table, int row, string label1, string val1, string label2, string val2)
+        private void AddInfoRow(TableLayoutPanel table, int row, string label1, Label val1Label, string label2, Label val2Label)
         {
             var l1 = new Label { Text = label1, Font = ThemeHelper.FontCaptionBold, ForeColor = ThemeHelper.TextSecondary, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
-            var v1 = new Label { Text = val1, Font = ThemeHelper.FontBody, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
             var l2 = new Label { Text = label2, Font = ThemeHelper.FontCaptionBold, ForeColor = ThemeHelper.TextSecondary, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
-            var v2 = new Label { Text = val2, Font = ThemeHelper.FontBodyBold, ForeColor = ThemeHelper.Text, AutoSize = true, Margin = new Padding(0, 0, 0, 6), Anchor = AnchorStyles.Left };
 
             table.Controls.Add(l1, 0, row);
-            table.Controls.Add(v1, 1, row);
+            table.Controls.Add(val1Label, 1, row);
             table.Controls.Add(l2, 2, row);
-            table.Controls.Add(v2, 3, row);
+            table.Controls.Add(val2Label, 3, row);
         }
 
         #endregion
@@ -257,5 +227,11 @@ namespace QuanLyCuaHangTapHoa.Presentation.Modals
         private DataGridView dgvDetails;
         private Label lblTotal;
         private Guna2Button btnClose;
+        private Label lblTitle;
+        private Label lblValNgayDat;
+        private Label lblValTrangThai;
+        private Label lblValKhachHang;
+        private Label lblValNgayDuyet;
+        private Panel pnlFooter;
     }
 }

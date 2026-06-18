@@ -39,6 +39,8 @@ namespace QuanLyCuaHangTapHoa.Presentation
             _accountUseCase = accountUseCase;
 
             InitializeComponent();
+            UpdateUserProfileDisplay();
+            ConfigureMenuAccess();
             ShowDefaultTab();
         }
 
@@ -88,6 +90,19 @@ namespace QuanLyCuaHangTapHoa.Presentation
                 btnPOS.Visible = false;
                 btnAccounts.Visible = false;
             }
+        }
+
+        private void UpdateUserProfileDisplay()
+        {
+            if (_currentUser == null) return;
+
+            lblUserGreeting.Text = _currentUser.NguoiDung?.HoTen ?? "User";
+
+            string roleText = "Khách Hàng";
+            if (_currentUser.NguoiDung is Admin) roleText = "Quản trị viên";
+            else if (_currentUser.NguoiDung is NhanVien) roleText = "Nhân viên";
+
+            lblUserRole.Text = roleText.ToUpper();
         }
 
         private void SwitchTab(UserControl uc, Guna2Button activeMenuButton, string title)
