@@ -23,6 +23,7 @@ namespace QuanLyCuaHangTapHoa.Presentation
         public MainForm()
         {
             InitializeComponent();
+            SetupEvents();
         }
 
         public MainForm(
@@ -39,9 +40,18 @@ namespace QuanLyCuaHangTapHoa.Presentation
             _accountUseCase = accountUseCase;
 
             InitializeComponent();
+            SetupEvents();
             UpdateUserProfileDisplay();
             ConfigureMenuAccess();
             ShowDefaultTab();
+        }
+
+        private void SetupEvents()
+        {
+            btnProducts.Click += (s, e) => SwitchTab(new ucSanPham(_productUseCase, _currentUser), btnProducts, "Sản phẩm & Quản lý Kho");
+            btnOrders.Click += (s, e) => SwitchTab(new ucDonHang(_orderUseCase, _productUseCase, _currentUser), btnOrders, "Yêu cầu Đặt giữ hàng");
+            btnPOS.Click += (s, e) => SwitchTab(new ucThanhToan(_invoiceUseCase, _orderUseCase, _productUseCase, _currentUser), btnPOS, "Điểm bán lẻ POS & Đổi trả");
+            btnAccounts.Click += (s, e) => SwitchTab(new ucTaiKhoan(_accountUseCase, _currentUser), btnAccounts, "Quản trị Tài khoản");
         }
 
         private Guna2Button CreateMenuButton(string text)
