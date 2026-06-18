@@ -1,11 +1,6 @@
-## Visual Studio
-.vs/
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-
-## Build results
+## Visual Studio / dotnet core
+[Bb]in/
+[Oo]bj/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -15,20 +10,51 @@ x86/
 [Aa]rm/
 [Aa]rm64/
 bld/
-[Bb]in/
-[Oo]bj/
 [Log]s/
 [Tt]est[Rr]esults/
+
+## Visual Studio Cache/Config
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.suo.tmp
+*.userprefs
+*.docstates
 
 ## NuGet Packages
 *.nupkg
 **/packages/
 !**/packages/build/
+project.lock.json
+project.fragment.lock.json
 
-## IDEs (VS Code, Rider, etc.)
-.vscode/
+## Rider / VS Code / Other IDEs
 .idea/
+.vscode/
 *.sln.iml
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.suo.tmp
+
+## SQL Server / Databases / SQLite
+*.mdf
+*.ldf
+*.ndf
+*.sdf
+*.db
+*.sqlite
+*.sqlite3
+
+## Temporary/Logs
+*.log
+*.tmp
+*.temp
+*._*
+*.cache
 
 ## OS-specific
 Thumbs.db
